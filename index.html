@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claude Code - Khóa học xây dựng ứng dụng hoàn chỉnh | Softech Aptech Đà Nẵng</title>
+  <meta name="description" content="Khóa học 8 buổi (16 tiết) thực chiến với Claude Code. Học cách xây dựng ứng dụng từ Firebase Backend đến Frontend, deploy lên Vercel. Khai giảng tháng 6/2026.">
+  <meta property="og:title" content="Claude Code - Xây dựng ứng dụng với AI">
+  <meta property="og:description" content="16 tiết thực chiến, deploy sản phẩm thực tế. Học phí ưu đãi 3.500.000đ (giảm 30%).">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#090A14">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bg: '#090A14',
+            card: '#13141F',
+            border: '#1F2030',
+            primary: '#DF6B33',
+            'primary-hover': '#C55A28',
+            'text-main': '#FFFFFF',
+            'text-muted': '#A0A0B0',
+            accent: '#F4A261',
+          },
+          fontFamily: {
+            heading: ['Plus Jakarta Sans', 'sans-serif'],
+            body: ['Inter', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { background-color: #090A14; color: #FFFFFF; font-family: 'Inter', sans-serif; }
+    h1, h2, h3, h4, h5, h6, .font-heading { font-family: 'Plus Jakarta Sans', sans-serif; }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #DF6B33, #F4A261);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .glow-box {
+      box-shadow: 0 0 80px rgba(223, 107, 51, 0.3);
+    }
+
+    .card-hover {
+      transition: border-color 300ms ease, transform 300ms ease;
+    }
+    .card-hover:hover {
+      border-color: #DF6B33;
+      transform: translateY(-4px);
+    }
+
+    .btn-primary {
+      transition: background-color 200ms ease, transform 150ms ease;
+    }
+    .btn-primary:hover { background-color: #C55A28; }
+    .btn-primary:active { transform: scale(0.98); }
+
+    .btn-secondary {
+      transition: border-color 200ms ease, transform 150ms ease;
+    }
+    .btn-secondary:hover { border-color: #DF6B33; color: #DF6B33; }
+    .btn-secondary:active { transform: scale(0.98); }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 600ms ease, transform 600ms ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Navbar blur */
+    .nav-scrolled {
+      background: rgba(9, 10, 20, 0.98) !important;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 rgba(31, 32, 48, 0.8);
+    }
+
+    /* FAQ accordion */
+    details summary {
+      list-style: none;
+    }
+    details summary::-webkit-details-marker {
+      display: none;
+    }
+    .faq-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 400ms ease, padding 400ms ease;
+    }
+    details[open] .faq-content {
+      max-height: 500px;
+      padding-top: 16px;
+    }
+    .faq-chevron {
+      transition: transform 300ms ease;
+    }
+    details[open] .faq-chevron {
+      transform: rotate(180deg);
+    }
+
+    /* Mobile menu */
+    .mobile-menu {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 300ms ease;
+    }
+    .mobile-menu.open {
+      max-height: 400px;
+    }
+
+    /* Counter animation */
+    .counter {
+      display: inline-block;
+    }
+
+    /* Hero visual animation */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-12px); }
+    }
+    .float-anim {
+      animation: float 4s ease-in-out infinite;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #090A14; }
+    ::-webkit-scrollbar-thumb { background: #1F2030; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #DF6B33; }
+
+    /* Focus styles */
+    :focus-visible {
+      outline: 2px solid #DF6B33;
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="font-body antialiased">
+
+  <!-- ========== 1. NAVIGATION ========== -->
+  <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" style="background: rgba(9, 10, 20, 0.6); backdrop-filter: blur(8px);">
+    <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="flex items-center justify-between h-16 lg:h-20" aria-label="Main navigation">
+
+        <!-- Logo -->
+        <a href="#" class="font-heading font-extrabold text-2xl gradient-text" aria-label="Claude Code - Trang chủ">
+          Claude Code
+        </a>
+
+        <!-- Desktop Menu -->
+        <ul class="hidden lg:flex items-center gap-8" role="menubar">
+          <li><a href="#course" class="text-text-muted hover:text-white transition-colors duration-200 font-medium" role="menuitem">Khóa học</a></li>
+          <li><a href="#roadmap" class="text-text-muted hover:text-white transition-colors duration-200 font-medium" role="menuitem">Lộ trình</a></li>
+          <li><a href="#students" class="text-text-muted hover:text-white transition-colors duration-200 font-medium" role="menuitem">Học viên</a></li>
+          <li><a href="#faq" class="text-text-muted hover:text-white transition-colors duration-200 font-medium" role="menuitem">FAQ</a></li>
+        </ul>
+
+        <!-- CTA Button -->
+        <a href="#register" class="hidden lg:inline-flex items-center gap-2 bg-primary hover:bg-primary-hover text-white font-semibold px-6 py-2.5 rounded-lg btn-primary" aria-label="Đăng ký khóa học Claude Code">
+          Đăng Ký Ngay
+          <i data-lucide="arrow-right" class="w-4 h-4" aria-hidden="true"></i>
+        </a>
+
+        <!-- Mobile Hamburger -->
+        <button id="menu-toggle" class="lg:hidden text-white p-2 rounded-lg hover:bg-white/5 transition-colors" aria-label="Mở menu điều hướng" aria-expanded="false" aria-controls="mobile-menu">
+          <i data-lucide="menu" class="w-6 h-6" id="menu-icon" aria-hidden="true"></i>
+        </button>
+      </nav>
+
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="mobile-menu lg:hidden" role="menu" aria-label="Menu di động">
+        <div class="py-4 space-y-1 border-t" style="border-color: #1F2030;">
+          <a href="#course" class="block px-4 py-3 text-text-muted hover:text-white hover:bg-white/5 rounded-lg transition-colors" role="menuitem">Khóa học</a>
+          <a href="#roadmap" class="block px-4 py-3 text-text-muted hover:text-white hover:bg-white/5 rounded-lg transition-colors" role="menuitem">Lộ trình</a>
+          <a href="#students" class="block px-4 py-3 text-text-muted hover:text-white hover:bg-white/5 rounded-lg transition-colors" role="menuitem">Học viên</a>
+          <a href="#faq" class="block px-4 py-3 text-text-muted hover:text-white hover:bg-white/5 rounded-lg transition-colors" role="menuitem">FAQ</a>
+          <a href="#register" class="block mx-4 mt-2 text-center bg-primary hover:bg-primary-hover text-white font-semibold px-6 py-3 rounded-lg transition-colors" role="menuitem">Đăng Ký Ngay</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ========== 2. HERO SECTION ========== -->
+    <section class="pt-28 lg:pt-36 pb-16 lg:pb-24 px-4 sm:px-6 lg:px-8" aria-labelledby="hero-heading">
+      <div class="max-w-[1200px] mx-auto">
+        <div class="grid lg:grid-cols-5 gap-12 lg:gap-8 items-center">
+
+          <!-- Left Column -->
+          <div class="lg:col-span-3 space-y-6">
+            <!-- Badge -->
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium" style="background: rgba(223, 107, 51, 0.12); border: 1px solid rgba(223, 107, 51, 0.3);">
+              <span>🔥</span>
+              <span class="text-primary font-semibold">Khai giảng tháng 6/2026</span>
+            </div>
+
+            <!-- Heading -->
+            <h1 id="hero-heading" class="font-heading font-extrabold text-4xl sm:text-5xl lg:text-[56px] leading-tight tracking-tight">
+              Xây dựng ứng dụng với <span class="gradient-text">Claude Code</span>
+            </h1>
+
+            <!-- Subtitle -->
+            <p class="text-text-muted text-lg leading-relaxed max-w-xl">
+              Khóa học 8 buổi (16 tiết) trang bị kỹ năng thực chiến — từ cài đặt đến triển khai sản phẩm hoàn chỉnh lên Vercel
+            </p>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 pt-2">
+              <a href="#register" class="inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary-hover text-white font-semibold px-8 py-4 rounded-xl btn-primary text-lg" aria-label="Đăng ký khóa học Claude Code">
+                Đăng Ký Khóa Học
+                <i data-lucide="arrow-right" class="w-5 h-5" aria-hidden="true"></i>
+              </a>
+              <button class="inline-flex items-center justify-center gap-2 border text-text-muted hover:border-primary hover:text-primary px-8 py-4 rounded-xl btn-secondary text-lg" aria-label="Xem demo sản phẩm">
+                <i data-lucide="play-circle" class="w-5 h-5" aria-hidden="true"></i>
+                Xem Demo
+              </button>
+            </div>
+
+            <!-- Price Tag -->
+            <div class="flex items-center gap-3 pt-2">
+              <span class="text-text-muted line-through text-xl">5.000.000đ</span>
+              <span class="font-heading font-extrabold text-3xl gradient-text">3.500.000đ</span>
+              <span class="px-3 py-1 bg-primary/20 text-primary text-sm font-bold rounded-full">Giảm 30%</span>
+            </div>
+          </div>
+
+          <!-- Right Column - Visual -->
+          <div class="lg:col-span-2 flex justify-center">
+            <div class="relative w-full max-w-sm aspect-square rounded-3xl glow-box flex items-center justify-center overflow-hidden" style="background: linear-gradient(145deg, #13141F, #1a1b2e); border: 1px solid #1F2030;">
+              <div class="absolute inset-0 opacity-10" style="background: radial-gradient(circle at 50% 50%, #DF6B33, transparent 70%);"></div>
+              <div class="float-anim text-center z-10">
+                <div class="inline-flex items-center justify-center w-32 h-32 rounded-2xl mb-6" style="background: rgba(223, 107, 51, 0.15); border: 1px solid rgba(223, 107, 51, 0.3);">
+                  <i data-lucide="terminal" class="w-16 h-16 text-primary" aria-hidden="true"></i>
+                </div>
+                <p class="font-heading font-bold text-xl text-white">Build with AI</p>
+                <p class="text-text-muted text-sm mt-1">Firebase → Frontend → Vercel</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stats Bar -->
+        <div class="mt-16 lg:mt-20 grid grid-cols-3 gap-4 sm:gap-8" role="list" aria-label="Thống kê khóa học">
+          <div class="text-center p-4 sm:p-6 rounded-2xl" style="background: #13141F; border: 1px solid #1F2030;" role="listitem">
+            <p class="font-heading font-extrabold text-3xl sm:text-4xl gradient-text counter" data-target="16">0</p>
+            <p class="text-text-muted text-sm mt-2 font-medium">Tiết học</p>
+          </div>
+          <div class="text-center p-4 sm:p-6 rounded-2xl" style="background: #13141F; border: 1px solid #1F2030;" role="listitem">
+            <p class="font-heading font-extrabold text-3xl sm:text-4xl gradient-text counter" data-target="8">0</p>
+            <p class="text-text-muted text-sm mt-2 font-medium">Buổi thực chiến</p>
+          </div>
+          <div class="text-center p-4 sm:p-6 rounded-2xl" style="background: #13141F; border: 1px solid #1F2030;" role="listitem">
+            <p class="font-heading font-extrabold text-3xl sm:text-4xl gradient-text">Deploy</p>
+            <p class="text-text-muted text-sm mt-2 font-medium">Sản phẩm thực tế</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 3. PROBLEM STATEMENT ========== -->
+    <section id="problems" class="py-16 lg:py-20 px-4 sm:px-6 lg:px-8" aria-labelledby="problems-heading">
+      <div class="max-w-[1200px] mx-auto">
+        <div class="text-center mb-12 reveal">
+          <h2 id="problems-heading" class="font-heading font-bold text-3xl sm:text-4xl lg:text-[40px] text-white mb-4">
+            Bạn đang gặp những vấn đề nào?
+          </h2>
+          <p class="text-text-muted text-lg max-w-2xl mx-auto">
+            Những thách thức phổ biến mà lập trình viên gặp phải mỗi ngày
+          </p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-4 sm:gap-6">
+          <!-- Pain Point 1 -->
+          <div class="p-6 sm:p-8 rounded-2xl card-hover cursor-default reveal" style="background: #13141F; border: 1px solid #1F2030;" role="article">
+            <div class="inline-flex items-center justify-center w-14 h-14 rounded-xl mb-5" style="background: rgba(223, 107, 51, 0.12);">
+              <i data-lucide="clock" class="w-7 h-7 text-primary" aria-hidden="true"></i>
+            </div>
+            <h3 class="font-heading font-bold text-xl text-white mb-2">Viết code mất quá nhiều thời gian</h3>
+            <p class="text-text-muted leading-relaxed">Ngồi hàng giờ viết những đoạn code lặp đi lặp lại, debug tìm lỗi mà không ra. Thời gian cho sáng tạo bị thu hẹp.</p>
+          </div>
+
+          <!-- Pain Point 2 -->
+          <div class="p-6 sm:p-8 rounded-2xl card-hover cursor-default reveal" style="background: #13141F; border: 1px solid #1F2030;" role="article">
+            <div class="inline-flex items-center justify-center w-14 h-14 rounded-xl mb-5" style="background: rgba(223, 107, 51, 0.12);">
+              <i data-lucide="brain" class="w-7 h-7 text-primary" aria-hidden="true"></i>
+            </div>
+            <h3 class="font-heading font-bold text-xl text-white mb-2">Khó ghi nhớ syntax và APIs phức tạp</h3>
+            <p class="text-text-muted leading-relaxed">Cú pháp quá nhiều thư viện, API thay đổi liên tục. Luôn phải tra Google cho mỗi dòng code.</p>
+          </div>
+
+          <!-- Pain Point 3 -->
+          <div class="p-6 sm:p-8 rounded-2xl card-hover cursor-default reveal" style="background: #13141F; border: 1px solid #1F2030;" role="article">
+            <div class="inline-flex items-center justify-center w-14 h-14 rounded-xl mb-5" style="background: rgba(223, 107, 51, 0.12);">
+              <i data-lucide="alert-triangle" class="w-7 h-7 text-primary" aria-hidden="true"></i>
+            </div>
+            <h3 class="font-heading font-bold text-xl text-white mb-2">Sợ làm hỏng code khi refactoring</h3>
+            <p class="text-text-muted leading-relaxed">Có vài nghìn dòng code, muốn refactor nhưng sợ phá vỡ thứ gì đó. Mỗi lần chạm vào là một canh bạc.</p>
+          </div>
+
+          <!-- Pain Point 4 -->
+          <div class="p-6 sm:p-8 rounded-2xl card-hover cursor-default reveal" style="background: #13141F; border: 1px solid #1F2030;" role="article">
+            <div class="inline-flex items-center justify-center w-14 h-14 rounded-xl mb-5" style="background: rgba(223, 107, 51, 0.12);">
+              <i data-lucide="bot" class="w-7 h-7 text-primary" aria-hidden="true"></i>
+            </div>
+            <h3 class="font-heading font-bold text-xl text-white mb-2">Muốn tự động hóa nhưng không biết bắt đầu từ đâu</h3>
+            <p class="text-text-muted leading-relaxed">Nghe về AI coding assistant nhưng không biết cách tích hợp vào workflow. Cứ loay hoay mãi vẫn không hiệu quả.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 4. SOLUTION SECTION ========== -->
+    <section id="course" class="py-16 lg:py-20 px-4 sm:px-6 lg:px-8" aria-labelledby="solution-heading">
+      <div class="max-w-[1200px] mx-auto">
+        <div class="text-center mb-12 reveal">
+          <h2 id="solution-heading" class="font-heading font-bold text-3xl sm:text-4xl lg:text-[40px] text-white mb-4">
+            Giải Pháp Toàn Diện Cho Bạn
+          </h2>
+          <p class="text-text-muted text-lg max-w-3xl mx-auto leading-relaxed">
+            Khóa học 8 buổi tập trung thực chiến, học cách sử dụng Claude Code để xây dựng ứng dụng hoàn chỉnh từ Firebase Backend đến Frontend, deploy lên Vercel
+          </p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          <!-- Feature 1 -->
+          <div class="p-6 sm:p-8 rounded-2xl card-hover cursor-default reveal" style="background: #13141F; border: 1px solid #1F2030;" role="article">
+            <div class="inline-flex items-center justify-center w-14 h-14 rounded-xl mb-5" style="background: rgba(223, 107, 51, 0.12);">
+              <i data-lucide="target" class="w-7 h-7 text-primary" aria-hidden="true"></i>
+            </div>
+            <h3 class="font-heading font-bold text-xl text-white mb-2">Hướng dẫn từng bước chi tiết</h3>
+            <p class="text-text-muted leading-relaxed">8 buổi thực chiến với bài tập cụ thể, không lý thuyết suông.</p>
+          </div>
+
+          <!-- Feature 2 -->
+          <div class="p-6 sm:p-8 rounded-2xl card-hover cursor-default reveal" style="background: #13141F; border: 1px solid #1F2030;" role="article">
+            <div class="inline-flex items-center justify-center w-14 h-14 rounded-xl mb-5" style="background: rgba(223, 107, 51, 0.12);">
+              <i data-lucide="wrench" class="w-7 h-7 text-primary" aria-hidden="true"></i>
+            </div>
+            <h3 class="font-heading font-bold text-xl text-white mb-2">16 tiết học thực hành</h3>
+            <p class="text-text-muted leading-relaxed">Bài tập thực tế từ dự án có sẵn, học đâu chắc đó.</p>
+          </div>
+
+          <!-- Feature 3 -->
+          <div class="p-6 sm:p-8 rounded-2xl card-hover cursor-default reveal" style="background: #13141F; border: 1px solid #1F2030;" role="article">
+            <div class="inline-flex items-center justify-center w-14 h-14 rounded-xl mb-5" style="background: rgba(223, 107, 51, 0.12);">
+              <i data-lucide="lightbulb" class="w-7 h-7 text-primary" aria-hidden="true"></i>
+            </div>
+            <h3 class="font-heading font-bold text-xl text-white mb-2">Học từ dự án thực tế</h3>
+            <p class="text-text-muted leading-relaxed">ProjectOS — hệ thống quản lý dự án doanh nghiệp thực sự.</p>
+          </div>
+
+          <!-- Feature 4 -->
+          <div class="p-6 sm:p-8 rounded-2xl card-hover cursor-default reveal" style="background: #13141F; border: 1px solid #1F2030;" role="article">
+            <div class="inline-flex items-center justify-center w-14 h-14 rounded-xl mb-5" style="background: rgba(223, 107, 51, 0.12);">
+              <i data-lucide="video" class="w-7 h-7 text-primary" aria-hidden="true"></i>
+            </div>
+            <h3 class="font-heading font-bold text-xl text-white mb-2">Video ghi lại toàn bộ buổi học</h3>
+            <p class="text-text-muted leading-relaxed">Truy cập vĩnh viễn, xem lại bất cứ khi nào cần.</p>
+          </div>
+
+          <!-- Feature 5 -->
+          <div class="p-6 sm:p-8 rounded-2xl card-hover cursor-default reveal" style="background: #13141F; border: 1px solid #1F2030;" role="article">
+            <div class="inline-flex items-center justify-center w-14 h-14 rounded-xl mb-5" style="background: rgba(223, 107, 51, 0.12);">
+              <i data-lucide="users" class="w-7 h-7 text-primary" aria-hidden="true"></i>
+            </div>
+            <h3 class="font-heading font-bold text-xl text-white mb-2">Cộng đồng học viên</h3>
+            <p class="text-text-muted leading-relaxed">Group Zalo hỗ trợ 3 tháng sau khóa học với giảng viên.</p>
+          </div>
+
+          <!-- Feature 6 -->
+          <div class="p-6 sm:p-8 rounded-2xl card-hover cursor-default reveal sm:col-span-2 lg:col-span-1" style="background: #13141F; border: 1px solid #1F2030;" role="article">
+            <div class="inline-flex items-center justify-center w-14 h-14 rounded-xl mb-5" style="background: rgba(223, 107, 51, 0.12);">
+              <i data-lucide="credit-card" class="w-7 h-7 text-primary" aria-hidden="true"></i>
+            </div>
+            <h3 class="font-heading font-bold text-xl text-white mb-2">Tài khoản Claude Pro học viên</h3>
+            <p class="text-text-muted leading-relaxed">Được cấp tài khoản Claude Pro miễn phí trong suốt khóa học, không cần tốn chi phí mua thêm.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 5. TARGET AUDIENCE ========== -->
+    <section id="audience" class="py-16 lg:py-20 px-4 sm:px-6 lg:px-8" aria-labelledby="audience-heading">
+      <div class="max-w-[1200px] mx-auto">
+        <div class="text-center mb-12 reveal">
+          <h2 id="audience-heading" class="font-heading font-bold text-3xl sm:text-4xl lg:text-[40px] text-white mb-4">
+            Khóa Học Dành Cho Ai?
+          </h2>
+          <p class="text-text-muted text-lg max-w-2xl mx-auto">
+            Phù hợp cho mọi đối tượng muốn làm chủ công nghệ AI trong lập trình
+          </p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-4 sm:gap-6">
+          <!-- Audience 1 -->
+          <div class="p-6 sm:p-8 rounded-2xl card-hover cursor-default reveal flex gap-5" style="background: #13141F; border: 1px solid #1F2030;" role="article">
+            <div class="flex-shrink-0">
+              <div class="inline-flex items-center justify-center w-14 h-14 rounded-xl" style="background: rgba(223, 107, 51, 0.12);">
+                <i data-lucide="graduation-cap" class="w-7 h-7 text-primary" aria-hidden="true"></i>
+              </div>
+            </div>
+            <div>
+              <h3 class="font-heading font-bold text-xl text-white mb-1">Sinh viên năm 3-4 & mới ra trường</h3>
+              <p class="text-text-muted text-sm mb-3">Lương khởi điểm 10-15 triệu/tháng</p>
+              <p class="text-text-muted text-sm leading-relaxed">Tạo lợi thế cạnh tranh trên thị trường tuyển dụng IT ngay từ khi còn đi học.</p>
+            </div>
+          </div>
+
+          <!-- Audience 2 -->
+          <div class="p-6 sm:p-8 rounded-2xl card-hover cursor-default reveal flex gap-5" style="background: #13141F; border: 1px solid #1F2030;" role="article">
+            <div class="flex-shrink-0">
+              <div class="inline-flex items-center justify-center w-14 h-14 rounded-xl" style="background: rgba(223, 107, 51, 0.12);">
+                <i data-lucide="briefcase" class="w-7 h-7 text-primary" aria-hidden="true"></i>
+              </div>
+            </div>
+            <div>
+              <h3 class="font-heading font-bold text-xl text-white mb-1">Người đi làm muốn nâng cấp</h3>
+              <p class="text-text-muted text-sm mb-3">Fresher, IT Support, Tester</p>
+              <p class="text-text-muted text-sm leading-relaxed">Nâng cao năng suất làm việc, chuyển sang vai trò Developer thực thụ.</p>
+            </div>
+          </div>
+
+          <!-- Audience 3 -->
+          <div class="p-6 sm:p-8 rounded-2xl card-hover cursor-default reveal flex gap-5" style="background: #13141F; border: 1px solid #1F2030;" role="article">
+            <div class="flex-shrink-0">
+              <div class="inline-flex items-center justify-center w-14 h-14 rounded-xl" style="background: rgba(223, 107, 51, 0.12);">
+                <i data-lucide="palette" class="w-7 h-7 text-primary" aria-hidden="true"></i>
+              </div>
+            </div>
+            <div>
+              <h3 class="font-heading font-bold text-xl text-white mb-1">Non-tech muốn tự xây sản phẩm</h3>
+              <p class="text-text-muted text-sm mb-3">PM, Designer, Entrepreneur</p>
+              <p class="text-text-muted text-sm leading-relaxed">Không cần biết lập trình chuyên sâu, vẫn xây dựng được ứng dụng thực tế.</p>
+            </div>
+          </div>
+
+          <!-- Audience 4 -->
+          <div class="p-6 sm:p-8 rounded-2xl card-hover cursor-default reveal flex gap-5" style="background: #13141F; border: 1px solid #1F2030;" role="article">
+            <div class="flex-shrink-0">
+              <div class="inline-flex items-center justify-center w-14 h-14 rounded-xl" style="background: rgba(223, 107, 51, 0.12);">
+                <i data-lucide="code-2" class="w-7 h-7 text-primary" aria-hidden="true"></i>
+              </div>
+            </div>
+            <div>
+              <h3 class="font-heading font-bold text-xl text-white mb-1">Developer muốn làm AI-native</h3>
+              <p class="text-text-muted text-sm mb-3">Đã có nền tảng, muốn bứt phá</p>
+              <p class="text-text-muted text-sm leading-relaxed">Tích hợp AI vào mọi khâu phát triển, trở thành lập trình viên thế hệ mới.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 6. COURSE CONTENT (Timeline) ========== -->
+    <section id="roadmap" class="py-16 lg:py-20 px-4 sm:px-6 lg:px-8" aria-labelledby="roadmap-heading">
+      <div class="max-w-[1200px] mx-auto">
+        <div class="text-center mb-12 reveal">
+          <h2 id="roadmap-heading" class="font-heading font-bold text-3xl sm:text-4xl lg:text-[40px] text-white mb-4">
+            Chương Trình 8 Buổi
+          </h2>
+          <p class="text-text-muted text-lg max-w-2xl mx-auto">
+            16 tiết học thực chiến, hoàn thành project có thể deploy ngay
+          </p>
+        </div>
+
+        <!-- Timeline -->
+        <div class="relative max-w-3xl mx-auto">
+          <!-- Session 1 -->
+          <div class="relative flex gap-6 mb-8 reveal" role="article" aria-label="Buổi 1">
+            <div class="flex-shrink-0 relative z-10">
+              <div class="w-12 h-12 rounded-full flex items-center justify-center font-heading font-bold text-white text-sm" style="background: #DF6B33; box-shadow: 0 0 20px rgba(223, 107, 51, 0.4);">1</div>
+              <div class="w-0.5 h-full absolute left-1/2 -translate-x-1/2 top-12" style="background: linear-gradient(to bottom, #DF6B33, #1F2030);" aria-hidden="true"></div>
+            </div>
+            <div class="flex-1 pb-2 card-hover rounded-2xl" style="background: #13141F; border: 1px solid #1F2030; padding: 20px 24px;">
+              <div class="flex flex-wrap items-center gap-3 mb-3">
+                <h3 class="font-heading font-bold text-lg text-white">Buổi 1 — Làm quen Claude Code</h3>
+                <span class="px-2 py-0.5 text-xs font-bold rounded-full text-primary" style="background: rgba(223, 107, 51, 0.12); border: 1px solid rgba(223, 107, 51, 0.3);">0,5 tiết</span>
+              </div>
+              <p class="text-text-muted text-sm leading-relaxed">Cài đặt Claude Code, cấu hình môi trường và luồng làm việc cơ bản. Thực hành các câu lệnh đầu tiên.</p>
+            </div>
+          </div>
+
+          <!-- Session 2 -->
+          <div class="relative flex gap-6 mb-8 reveal" role="article" aria-label="Buổi 2">
+            <div class="flex-shrink-0 relative z-10">
+              <div class="w-12 h-12 rounded-full flex items-center justify-center font-heading font-bold text-white text-sm" style="background: #DF6B33; box-shadow: 0 0 20px rgba(223, 107, 51, 0.4);">2</div>
+              <div class="w-0.5 h-full absolute left-1/2 -translate-x-1/2 top-12" style="background: linear-gradient(to bottom, #DF6B33, #1F2030);" aria-hidden="true"></div>
+            </div>
+            <div class="flex-1 pb-2 card-hover rounded-2xl" style="background: #13141F; border: 1px solid #1F2030; padding: 20px 24px;">
+              <div class="flex flex-wrap items-center gap-3 mb-3">
+                <h3 class="font-heading font-bold text-lg text-white">Buổi 2 — Prompt Engineering thực chiến</h3>
+                <span class="px-2 py-0.5 text-xs font-bold rounded-full text-primary" style="background: rgba(223, 107, 51, 0.12); border: 1px solid rgba(223, 107, 51, 0.3);">0,5 tiết</span>
+              </div>
+              <p class="text-text-muted text-sm leading-relaxed">Viết prompt hiệu quả để điều khiển AI. Học cách phân tích yêu cầu, cấu trúc phản hồi và xử lý edge cases.</p>
+            </div>
+          </div>
+
+          <!-- Session 3 -->
+          <div class="relative flex gap-6 mb-8 reveal" role="article" aria-label="Buổi 3">
+            <div class="flex-shrink-0 relative z-10">
+              <div class="w-12 h-12 rounded-full flex items-center justify-center font-heading font-bold text-white text-sm" style="background: #DF6B33; box-shadow: 0 0 20px rgba(223, 107, 51, 0.4);">3</div>
+              <div class="w-0.5 h-full absolute left-1/2 -translate-x-1/2 top-12" style="background: linear-gradient(to bottom, #DF6B33, #1F2030);" aria-hidden="true"></div>
+            </div>
+            <div class="flex-1 pb-2 card-hover rounded-2xl" style="background: #13141F; border: 1px solid #1F2030; padding: 20px 24px;">
+              <div class="flex flex-wrap items-center gap-3 mb-3">
+                <h3 class="font-heading font-bold text-lg text-white">Buổi 3 — Thiết kế kiến trúc ứng dụng cùng AI</h3>
+                <span class="px-2 py-0.5 text-xs font-bold rounded-full text-primary" style="background: rgba(223, 107, 51, 0.12); border: 1px solid rgba(223, 107, 51, 0.3);">4 tiết</span>
+              </div>
+              <p class="text-text-muted text-sm leading-relaxed">Sử dụng Claude Code để phân tích yêu cầu, vẽ sơ đồ kiến trúc, lên database schema và API design cho ProjectOS.</p>
+            </div>
+          </div>
+
+          <!-- Session 4 -->
+          <div class="relative flex gap-6 mb-8 reveal" role="article" aria-label="Buổi 4">
+            <div class="flex-shrink-0 relative z-10">
+              <div class="w-12 h-12 rounded-full flex items-center justify-center font-heading font-bold text-white text-sm" style="background: #DF6B33; box-shadow: 0 0 20px rgba(223, 107, 51, 0.4);">4</div>
+              <div class="w-0.5 h-full absolute left-1/2 -translate-x-1/2 top-12" style="background: linear-gradient(to bottom, #DF6B33, #1F2030);" aria-hidden="true"></div>
+            </div>
+            <div class="flex-1 pb-2 card-hover rounded-2xl" style="background: #13141F; border: 1px solid #1F2030; padding: 20px 24px;">
+              <div class="flex flex-wrap items-center gap-3 mb-3">
+                <h3 class="font-heading font-bold text-lg text-white">Buổi 4 — Xây dựng Backend với Firebase</h3>
+                <span class="px-2 py-0.5 text-xs font-bold rounded-full text-primary" style="background: rgba(223, 107, 51, 0.12); border: 1px solid rgba(223, 107, 51, 0.3);">4 tiết</span>
+              </div>
+              <p class="text-text-muted text-sm leading-relaxed">Thiết lập Firebase Authentication, Firestore, Firebase Storage. Viết API endpoints và security rules.</p>
+            </div>
+          </div>
+
+          <!-- Session 5 -->
+          <div class="relative flex gap-6 mb-8 reveal" role="article" aria-label="Buổi 5">
+            <div class="flex-shrink-0 relative z-10">
+              <div class="w-12 h-12 rounded-full flex items-center justify-center font-heading font-bold text-white text-sm" style="background: #DF6B33; box-shadow: 0 0 20px rgba(223, 107, 51, 0.4);">5</div>
+              <div class="w-0.5 h-full absolute left-1/2 -translate-x-1/2 top-12" style="background: linear-gradient(to bottom, #DF6B33, #1F2030);" aria-hidden="true"></div>
+            </div>
+            <div class="flex-1 pb-2 card-hover rounded-2xl" style="background: #13141F; border: 1px solid #1F2030; padding: 20px 24px;">
+              <div class="flex flex-wrap items-center gap-3 mb-3">
+                <h3 class="font-heading font-bold text-lg text-white">Buổi 5 — Xây dựng Frontend</h3>
+                <span class="px-2 py-0.5 text-xs font-bold rounded-full text-primary" style="background: rgba(223, 107, 51, 0.12); border: 1px solid rgba(223, 107, 51, 0.3);">4 tiết</span>
+              </div>
+              <p class="text-text-muted text-sm leading-relaxed">Giao diện người dùng với Tailwind CSS, kết nối Firebase, xử lý nghiệp vụ CRUD và quản lý state.</p>
+            </div>
+          </div>
+
+          <!-- Session 6 -->
+          <div class="relative flex gap-6 mb-8 reveal" role="article" aria-label="Buổi 6">
+            <div class="flex-shrink-0 relative z-10">
+              <div class="w-12 h-12 rounded-full flex items-center justify-center font-heading font-bold text-white text-sm" style="background: #DF6B33; box-shadow: 0 0 20px rgba(223, 107, 51, 0.4);">6</div>
+              <div class="w-0.5 h-full absolute left-1/2 -translate-x-1/2 top-12" style="background: linear-gradient(to bottom, #DF6B33, #1F2030);" aria-hidden="true"></div>
+            </div>
+            <div class="flex-1 pb-2 card-hover rounded-2xl" style="background: #13141F; border: 1px solid #1F2030; padding: 20px 24px;">
+              <div class="flex flex-wrap items-center gap-3 mb-3">
+                <h3 class="font-heading font-bold text-lg text-white">Buổi 6 — Debug & Refactor cùng AI</h3>
+                <span class="px-2 py-0.5 text-xs font-bold rounded-full text-primary" style="background: rgba(223, 107, 51, 0.12); border: 1px solid rgba(223, 107, 51, 0.3);">1 tiết</span>
+              </div>
+              <p class="text-text-muted text-sm leading-relaxed">Dùng Claude Code để debug nhanh, phân tích lỗi, refactor code sạch hơn và tối ưu hiệu suất.</p>
+            </div>
+          </div>
+
+          <!-- Session 7 -->
+          <div class="relative flex gap-6 mb-8 reveal" role="article" aria-label="Buổi 7">
+            <div class="flex-shrink-0 relative z-10">
+              <div class="w-12 h-12 rounded-full flex items-center justify-center font-heading font-bold text-white text-sm" style="background: #DF6B33; box-shadow: 0 0 20px rgba(223, 107, 51, 0.4);">7</div>
+              <div class="w-0.5 h-full absolute left-1/2 -translate-x-1/2 top-12" style="background: linear-gradient(to bottom, #DF6B33, #1F2030);" aria-hidden="true"></div>
+            </div>
+            <div class="flex-1 pb-2 card-hover rounded-2xl" style="background: #13141F; border: 1px solid #1F2030; padding: 20px 24px;">
+              <div class="flex flex-wrap items-center gap-3 mb-3">
+                <h3 class="font-heading font-bold text-lg text-white">Buổi 7 — Tích hợp tính năng nâng cao</h3>
+                <span class="px-2 py-0.5 text-xs font-bold rounded-full text-primary" style="background: rgba(223, 107, 51, 0.12); border: 1px solid rgba(223, 107, 51, 0.3);">1 tiết</span>
+              </div>
+              <p class="text-text-muted text-sm leading-relaxed">Charts, notifications, real-time updates, và các tính năng nâng cao khác với sự hỗ trợ của AI.</p>
+            </div>
+          </div>
+
+          <!-- Session 8 -->
+          <div class="relative flex gap-6 reveal" role="article" aria-label="Buổi 8">
+            <div class="flex-shrink-0 relative z-10">
+              <div class="w-12 h-12 rounded-full flex items-center justify-center font-heading font-bold text-white text-sm" style="background: #DF6B33; box-shadow: 0 0 20px rgba(223, 107, 51, 0.4);">8</div>
+            </div>
+            <div class="flex-1 pb-2 card-hover rounded-2xl" style="background: #13141F; border: 1px solid #1F2030; padding: 20px 24px;">
+              <div class="flex flex-wrap items-center gap-3 mb-3">
+                <h3 class="font-heading font-bold text-lg text-white">Buổi 8 — Deploy & Hoàn thiện sản phẩm</h3>
+                <span class="px-2 py-0.5 text-xs font-bold rounded-full text-primary" style="background: rgba(223, 107, 51, 0.12); border: 1px solid rgba(223, 107, 51, 0.3);">1 tiết</span>
+              </div>
+              <p class="text-text-muted text-sm leading-relaxed">Deploy lên Vercel, cấu hình domain, SSL, và tối ưu CI/CD. Hoàn thành sản phẩm sẵn sàng production.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 7. SOCIAL PROOF ========== -->
+    <section id="students" class="py-16 lg:py-20 px-4 sm:px-6 lg:px-8" aria-labelledby="proof-heading">
+      <div class="max-w-[1200px] mx-auto">
+        <div class="text-center mb-12 reveal">
+          <h2 id="proof-heading" class="font-heading font-bold text-3xl sm:text-4xl lg:text-[40px] text-white mb-4">
+            Sản Phẩm Học Viên
+          </h2>
+          <p class="text-text-muted text-lg max-w-2xl mx-auto">
+            Project thực tế được xây dựng hoàn toàn bằng Claude Code trong 8 buổi học
+          </p>
+        </div>
+
+        <!-- Highlight Project Card -->
+        <div class="rounded-3xl p-8 sm:p-12 mb-10 reveal" style="background: linear-gradient(145deg, #13141F, #1a1b2e); border: 1px solid #1F2030; box-shadow: 0 0 60px rgba(223, 107, 51, 0.08);" role="article" aria-label="ProjectOS - Sản phẩm học viên">
+          <div class="flex flex-col lg:flex-row gap-8 items-start">
+            <div class="flex-shrink-0">
+              <div class="w-20 h-20 rounded-2xl flex items-center justify-center" style="background: rgba(223, 107, 51, 0.12); border: 1px solid rgba(223, 107, 51, 0.3);">
+                <i data-lucide="layout-dashboard" class="w-10 h-10 text-primary" aria-hidden="true"></i>
+              </div>
+            </div>
+            <div class="flex-1 space-y-4">
+              <div class="flex flex-wrap items-center gap-3">
+                <h3 class="font-heading font-bold text-2xl text-white">ProjectOS — Enterprise Project Management</h3>
+                <a href="https://project-management.vercel.app" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-primary hover:text-accent transition-colors text-sm font-medium" aria-label="Xem demo ProjectOS (mở tab mới)">
+                  project-management.vercel.app
+                  <i data-lucide="external-link" class="w-3.5 h-3.5" aria-hidden="true"></i>
+                </a>
+              </div>
+              <p class="text-text-muted leading-relaxed text-lg max-w-3xl">
+                Hệ thống quản lý dự án doanh nghiệp, xây dựng hoàn toàn với Claude Code trong 8 buổi học. Authentication, Kanban board, Analytics Dashboard, Real-time collaboration.
+              </p>
+              <div class="flex flex-wrap gap-2 pt-2" role="list" aria-label="Tech stack">
+                <span class="px-3 py-1 text-xs font-semibold rounded-full" style="background: rgba(223, 107, 51, 0.1); border: 1px solid rgba(223, 107, 51, 0.25); color: #F4A261;" role="listitem">Firebase</span>
+                <span class="px-3 py-1 text-xs font-semibold rounded-full" style="background: rgba(223, 107, 51, 0.1); border: 1px solid rgba(223, 107, 51, 0.25); color: #F4A261;" role="listitem">Next.js</span>
+                <span class="px-3 py-1 text-xs font-semibold rounded-full" style="background: rgba(223, 107, 51, 0.1); border: 1px solid rgba(223, 107, 51, 0.25); color: #F4A261;" role="listitem">Vercel</span>
+                <span class="px-3 py-1 text-xs font-semibold rounded-full" style="background: rgba(223, 107, 51, 0.1); border: 1px solid rgba(223, 107, 51, 0.25); color: #F4A261;" role="listitem">Tailwind</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quote -->
+        <blockquote class="text-center mb-10 reveal" cite="https://softech.vn">
+          <p class="font-heading text-xl sm:text-2xl lg:text-3xl text-white/90 italic leading-relaxed max-w-3xl mx-auto mb-4">
+            "Lập trình viên tương lai không phải người viết code nhanh nhất. Họ là người biết hướng dẫn AI tốt nhất."
+          </p>
+          <cite class="text-text-muted text-sm not-italic">— Softech Aptech Đà Nẵng</cite>
+        </blockquote>
+
+        <!-- Stats -->
+        <div class="grid grid-cols-2 gap-4 sm:gap-8 max-w-xl mx-auto reveal" role="list" aria-label="Thống kê thành công">
+          <div class="text-center p-6 rounded-2xl" style="background: #13141F; border: 1px solid #1F2030;" role="listitem">
+            <p class="font-heading font-extrabold text-4xl sm:text-5xl gradient-text">100%</p>
+            <p class="text-text-muted text-sm mt-2 font-medium">Học viên hoàn thành project</p>
+          </div>
+          <div class="text-center p-6 rounded-2xl" style="background: #13141F; border: 1px solid #1F2030;" role="listitem">
+            <p class="font-heading font-extrabold text-4xl sm:text-5xl gradient-text">8 buổi</p>
+            <p class="text-text-muted text-sm mt-2 font-medium">Từ zero đến deploy production</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 8. CTA SECTION ========== -->
+    <section id="register" class="py-16 lg:py-20 px-4 sm:px-6 lg:px-8" aria-labelledby="register-heading">
+      <div class="max-w-[1200px] mx-auto">
+        <div class="max-w-lg mx-auto text-center">
+          <div class="reveal">
+            <h2 id="register-heading" class="font-heading font-bold text-3xl sm:text-4xl lg:text-[40px] text-white mb-4">
+              Sẵn Sàng Bắt Đầu Chưa?
+            </h2>
+            <p class="text-text-muted text-lg mb-10">
+              Để lại thông tin, đội ngũ tư vấn sẽ liên hệ trong 24h
+            </p>
+          </div>
+
+          <!-- Registration Form -->
+          <form id="register-form" class="space-y-4 mb-8 text-left reveal" novalidate aria-label="Form đăng ký khóa học">
+            <div>
+              <label for="fullname" class="block text-sm font-medium text-text-muted mb-2">Họ và tên <span class="text-primary" aria-label="bắt buộc">*</span></label>
+              <input
+                type="text"
+                id="fullname"
+                name="fullname"
+                required
+                placeholder="Nguyễn Văn A"
+                class="w-full px-4 py-3.5 rounded-xl text-white placeholder-text-muted/50 outline-none transition-all duration-200"
+                style="background: #13141F; border: 1px solid #1F2030;"
+                aria-required="true"
+                aria-describedby="fullname-error"
+              >
+              <p id="fullname-error" class="text-red-400 text-sm mt-1 hidden" role="alert"></p>
+            </div>
+
+            <div>
+              <label for="email" class="block text-sm font-medium text-text-muted mb-2">Email <span class="text-primary" aria-label="bắt buộc">*</span></label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                placeholder="email@example.com"
+                class="w-full px-4 py-3.5 rounded-xl text-white placeholder-text-muted/50 outline-none transition-all duration-200"
+                style="background: #13141F; border: 1px solid #1F2030;"
+                aria-required="true"
+                aria-describedby="email-error"
+              >
+              <p id="email-error" class="text-red-400 text-sm mt-1 hidden" role="alert"></p>
+            </div>
+
+            <div>
+              <label for="phone" class="block text-sm font-medium text-text-muted mb-2">Số điện thoại <span class="text-text-muted/50">(tùy chọn)</span></label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                placeholder="0912 345 678"
+                class="w-full px-4 py-3.5 rounded-xl text-white placeholder-text-muted/50 outline-none transition-all duration-200"
+                style="background: #13141F; border: 1px solid #1F2030;"
+              >
+            </div>
+
+            <button
+              type="submit"
+              class="w-full bg-primary hover:bg-primary-hover text-white font-bold text-lg py-4 rounded-xl btn-primary flex items-center justify-center gap-2 mt-2"
+              aria-label="Đăng ký khóa học Claude Code ngay"
+            >
+              Đăng Ký Ngay
+              <i data-lucide="arrow-right" class="w-5 h-5" aria-hidden="true"></i>
+            </button>
+          </form>
+
+          <!-- Success Message (hidden by default) -->
+          <div id="success-message" class="hidden p-6 rounded-2xl text-center" style="background: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94, 0.3);" role="status" aria-live="polite">
+            <div class="inline-flex items-center justify-center w-16 h-16 rounded-full mb-4" style="background: rgba(34, 197, 94, 0.15);">
+              <i data-lucide="check-circle" class="w-8 h-8 text-green-400" aria-hidden="true"></i>
+            </div>
+            <h3 class="font-heading font-bold text-xl text-white mb-2">Đăng ký thành công!</h3>
+            <p class="text-text-muted">Đội ngũ tư vấn sẽ liên hệ bạn trong 24 giờ. Chúc bạn học tốt!</p>
+          </div>
+
+          <!-- Divider -->
+          <div class="flex items-center gap-4 mb-8" aria-hidden="true">
+            <div class="flex-1 h-px" style="background: #1F2030;"></div>
+            <span class="text-text-muted text-sm">hoặc</span>
+            <div class="flex-1 h-px" style="background: #1F2030;"></div>
+          </div>
+
+          <!-- Contact Button -->
+          <a href="tel:02363779779" class="inline-flex items-center justify-center gap-2 border text-text-muted hover:border-primary hover:text-primary px-8 py-4 rounded-xl btn-secondary text-lg w-full mb-6" aria-label="Liên hệ hỗ trợ qua điện thoại">
+            <i data-lucide="phone" class="w-5 h-5" aria-hidden="true"></i>
+            Liên Hệ Hỗ Trợ
+          </a>
+
+          <!-- Hotline -->
+          <div class="reveal">
+            <p class="text-text-muted text-sm mb-2">Hotline tư vấn</p>
+            <a href="tel:02363779779" class="font-heading font-extrabold text-2xl gradient-text hover:opacity-80 transition-opacity" aria-label="Gọi hotline 0236.3.779.779">
+              📞 0236.3.779.779
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 9. FAQ SECTION ========== -->
+    <section id="faq" class="py-16 lg:py-20 px-4 sm:px-6 lg:px-8" aria-labelledby="faq-heading">
+      <div class="max-w-[1200px] mx-auto">
+        <div class="text-center mb-12 reveal">
+          <h2 id="faq-heading" class="font-heading font-bold text-3xl sm:text-4xl lg:text-[40px] text-white mb-4">
+            Câu Hỏi Thường Gặp
+          </h2>
+        </div>
+
+        <div class="max-w-3xl mx-auto space-y-3 reveal">
+          <!-- FAQ 1 -->
+          <details class="rounded-2xl overflow-hidden" style="background: #13141F; border: 1px solid #1F2030;">
+            <summary class="flex items-center justify-between gap-4 p-6 cursor-pointer list-none select-none">
+              <span class="font-heading font-semibold text-lg text-white pr-4">Tôi là người mới bắt đầu, có học được không?</span>
+              <i data-lucide="chevron-down" class="w-5 h-5 text-text-muted flex-shrink-0 faq-chevron" aria-hidden="true"></i>
+            </summary>
+            <div class="faq-content px-6 pb-6">
+              <p class="text-text-muted leading-relaxed">Hoàn toàn được! Khóa học được thiết kế từ cơ bản đến nâng cao. Buổi 1-2 sẽ trang bị nền tảng về Claude Code và Prompt Engineering. Bạn chỉ cần biết sử dụng máy tính cơ bản là có thể theo học.</p>
+            </div>
+          </details>
+
+          <!-- FAQ 2 -->
+          <details class="rounded-2xl overflow-hidden" style="background: #13141F; border: 1px solid #1F2030;">
+            <summary class="flex items-center justify-between gap-4 p-6 cursor-pointer list-none select-none">
+              <span class="font-heading font-semibold text-lg text-white pr-4">Khóa này dành cho những ai?</span>
+              <i data-lucide="chevron-down" class="w-5 h-5 text-text-muted flex-shrink-0 faq-chevron" aria-hidden="true"></i>
+            </summary>
+            <div class="faq-content px-6 pb-6">
+              <p class="text-text-muted leading-relaxed">Khóa học phù hợp với sinh viên IT năm 3-4, người mới ra trường, Fresher/Tester muốn nâng cấp, PM/Designer/Entrepreneur muốn tự xây sản phẩm, và Developer đã có nền tảng muốn làm AI-native.</p>
+            </div>
+          </details>
+
+          <!-- FAQ 3 -->
+          <details class="rounded-2xl overflow-hidden" style="background: #13141F; border: 1px solid #1F2030;">
+            <summary class="flex items-center justify-between gap-4 p-6 cursor-pointer list-none select-none">
+              <span class="font-heading font-semibold text-lg text-white pr-4">Tôi mất bao lâu để hoàn thành?</span>
+              <i data-lucide="chevron-down" class="w-5 h-5 text-text-muted flex-shrink-0 faq-chevron" aria-hidden="true"></i>
+            </summary>
+            <div class="faq-content px-6 pb-6">
+              <p class="text-text-muted leading-relaxed">Khóa học kéo dài 4 tuần với 8 buổi (16 tiết). Mỗi tuần học 2 buổi, mỗi buổi 2 tiết. Sau khóa học, bạn sẽ có 1 sản phẩm hoàn chỉnh deploy lên Vercel.</p>
+            </div>
+          </details>
+
+          <!-- FAQ 4 -->
+          <details class="rounded-2xl overflow-hidden" style="background: #13141F; border: 1px solid #1F2030;">
+            <summary class="flex items-center justify-between gap-4 p-6 cursor-pointer list-none select-none">
+              <span class="font-heading font-semibold text-lg text-white pr-4">Có hỗ trợ sau khi mua không?</span>
+              <i data-lucide="chevron-down" class="w-5 h-5 text-text-muted flex-shrink-0 faq-chevron" aria-hidden="true"></i>
+            </summary>
+            <div class="faq-content px-6 pb-6">
+              <p class="text-text-muted leading-relaxed">Có! Bạn được tham gia Group Zalo riêng để được hỗ trợ trực tiếp từ giảng viên trong vòng 3 tháng sau khóa học. Ngoài ra, được truy cập video bài giảng vĩnh viễn.</p>
+            </div>
+          </details>
+
+          <!-- FAQ 5 -->
+          <details class="rounded-2xl overflow-hidden" style="background: #13141F; border: 1px solid #1F2030;">
+            <summary class="flex items-center justify-between gap-4 p-6 cursor-pointer list-none select-none">
+              <span class="font-heading font-semibold text-lg text-white pr-4">Nếu tôi không hài lòng thì sao?</span>
+              <i data-lucide="chevron-down" class="w-5 h-5 text-text-muted flex-shrink-0 faq-chevron" aria-hidden="true"></i>
+            </summary>
+            <div class="faq-content px-6 pb-6">
+              <p class="text-text-muted leading-relaxed">Softech Aptech cam kết hoàn 100% học phí nếu bạn không hài lòng sau buổi học đầu tiên. Sau buổi 1, nếu cảm thấy không phù hợp, chỉ cần báo trong vòng 24h.</p>
+            </div>
+          </details>
+
+          <!-- FAQ 6 -->
+          <details class="rounded-2xl overflow-hidden" style="background: #13141F; border: 1px solid #1F2030;">
+            <summary class="flex items-center justify-between gap-4 p-6 cursor-pointer list-none select-none">
+              <span class="font-heading font-semibold text-lg text-white pr-4">Tôi có truy cập vĩnh viễn không?</span>
+              <i data-lucide="chevron-down" class="w-5 h-5 text-text-muted flex-shrink-0 faq-chevron" aria-hidden="true"></i>
+            </summary>
+            <div class="faq-content px-6 pb-6">
+              <p class="text-text-muted leading-relaxed">Có. Video ghi lại toàn bộ 8 buổi học sẽ được upload lên hệ thống và bạn có quyền truy cập vĩnh viễn. Tài liệu, source code, và slide đều có thể tải về.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========== 10. FOOTER ========== -->
+  <footer class="py-16 px-4 sm:px-6 lg:px-8" style="background: #050610;" role="contentinfo">
+    <div class="max-w-[1200px] mx-auto">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+        <!-- Brand Column -->
+        <div class="space-y-4">
+          <a href="#" class="font-heading font-extrabold text-2xl gradient-text" aria-label="Claude Code - Trang chủ">
+            Claude Code
+          </a>
+          <p class="text-text-muted text-sm leading-relaxed">
+            Khóa học AI-native development tại Softech Aptech Đà Nẵng. Trang bị kỹ năng thực chiến với Claude Code.
+          </p>
+        </div>
+
+        <!-- Contact Column -->
+        <div class="space-y-3">
+          <h3 class="font-heading font-bold text-white text-sm uppercase tracking-wider" style="color: #A0A0B0;">Liên hệ</h3>
+          <address class="not-italic space-y-3 text-sm">
+            <p class="flex items-start gap-2 text-text-muted">
+              <i data-lucide="map-pin" class="w-4 h-4 mt-0.5 flex-shrink-0 text-primary" aria-hidden="true"></i>
+              24 Lê Thánh Tôn, Đà Nẵng
+            </p>
+            <a href="tel:02363779779" class="flex items-center gap-2 text-text-muted hover:text-primary transition-colors">
+              <i data-lucide="phone" class="w-4 h-4 flex-shrink-0 text-primary" aria-hidden="true"></i>
+              0236.3.779.779
+            </a>
+            <a href="mailto:info@softech.vn" class="flex items-center gap-2 text-text-muted hover:text-primary transition-colors">
+              <i data-lucide="mail" class="w-4 h-4 flex-shrink-0 text-primary" aria-hidden="true"></i>
+              info@softech.vn
+            </a>
+          </address>
+        </div>
+
+        <!-- Social Column -->
+        <div class="space-y-3">
+          <h3 class="font-heading font-bold text-sm uppercase tracking-wider" style="color: #A0A0B0;">Theo dõi</h3>
+          <div class="flex gap-3">
+            <a href="#" class="w-10 h-10 rounded-xl flex items-center justify-center transition-colors hover:text-primary" style="background: #13141F; border: 1px solid #1F2030;" aria-label="Facebook Softech Aptech">
+              <i data-lucide="facebook" class="w-5 h-5 text-text-muted" aria-hidden="true"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-xl flex items-center justify-center transition-colors hover:text-primary" style="background: #13141F; border: 1px solid #1F2030;" aria-label="Zalo Softech Aptech">
+              <i data-lucide="message-circle" class="w-5 h-5 text-text-muted" aria-hidden="true"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-xl flex items-center justify-center transition-colors hover:text-primary" style="background: #13141F; border: 1px solid #1F2030;" aria-label="LinkedIn Softech Aptech">
+              <i data-lucide="linkedin" class="w-5 h-5 text-text-muted" aria-hidden="true"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-xl flex items-center justify-center transition-colors hover:text-primary" style="background: #13141F; border: 1px solid #1F2030;" aria-label="YouTube Softech Aptech">
+              <i data-lucide="youtube" class="w-5 h-5 text-text-muted" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Newsletter Column -->
+        <div class="space-y-3">
+          <h3 class="font-heading font-bold text-sm uppercase tracking-wider" style="color: #A0A0B0;">Nhận tips Claude Code miễn phí</h3>
+          <form id="newsletter-form" class="flex gap-2" novalidate aria-label="Form đăng ký newsletter">
+            <label for="newsletter-email" class="sr-only">Email nhận tin</label>
+            <input
+              type="email"
+              id="newsletter-email"
+              name="newsletter-email"
+              placeholder="email@example.com"
+              required
+              class="flex-1 px-4 py-2.5 rounded-xl text-white placeholder-text-muted/50 text-sm outline-none min-w-0"
+              style="background: #13141F; border: 1px solid #1F2030;"
+              aria-label="Email đăng ký nhận tin"
+            >
+            <button type="submit" class="px-4 py-2.5 bg-primary hover:bg-primary-hover text-white text-sm font-semibold rounded-xl btn-primary whitespace-nowrap transition-colors" aria-label="Đăng ký nhận tin">
+              Đăng ký
+            </button>
+          </form>
+          <p id="newsletter-success" class="text-green-400 text-sm hidden" role="status" aria-live="polite">Đăng ký thành công!</p>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div class="h-px mb-8" style="background: #1F2030;"></div>
+
+      <!-- Copyright -->
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-text-muted text-sm">
+        <p>© 2026 Softech Aptech Đà Nẵng. All rights reserved.</p>
+        <div class="flex gap-6">
+          <a href="#" class="hover:text-white transition-colors">Chính sách bảo mật</a>
+          <a href="#" class="hover:text-white transition-colors">Điều khoản sử dụng</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== JAVASCRIPT ========== -->
+  <script>
+    // 1. Init Lucide icons
+    lucide.createIcons();
+
+    // 2. Mobile menu toggle
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcon = document.getElementById('menu-icon');
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', isOpen);
+      menuIcon.setAttribute('data-lucide', isOpen ? 'x' : 'menu');
+      lucide.createIcons();
+    });
+
+    // Close mobile menu on link click
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuIcon.setAttribute('data-lucide', 'menu');
+        lucide.createIcons();
+      });
+    });
+
+    // 3. Navbar background on scroll
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 50) {
+        navbar.classList.add('nav-scrolled');
+      } else {
+        navbar.classList.remove('nav-scrolled');
+      }
+    }, { passive: true });
+
+    // 4. Scroll reveal with IntersectionObserver
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // 5. Counter animation
+    const counters = document.querySelectorAll('.counter[data-target]');
+    let countersAnimated = false;
+
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !countersAnimated) {
+          countersAnimated = true;
+          counters.forEach(counter => {
+            const target = parseInt(counter.getAttribute('data-target'));
+            const duration = 1500;
+            const step = target / (duration / 16);
+            let current = 0;
+
+            const updateCounter = () => {
+              current = Math.min(current + step, target);
+              counter.textContent = Math.floor(current);
+              if (current < target) {
+                requestAnimationFrame(updateCounter);
+              }
+            };
+            updateCounter();
+          });
+          counterObserver.disconnect();
+        }
+      });
+    }, { threshold: 0.5 });
+
+    counters.forEach(counter => counterObserver.observe(counter));
+
+    // 6. Registration form validation
+    const registerForm = document.getElementById('register-form');
+    const successMessage = document.getElementById('success-message');
+
+    function showError(fieldId, message) {
+      const field = document.getElementById(fieldId);
+      const errorEl = document.getElementById(fieldId + '-error');
+      if (field && errorEl) {
+        field.style.borderColor = '#EF4444';
+        errorEl.textContent = message;
+        errorEl.classList.remove('hidden');
+      }
+    }
+
+    function clearError(fieldId) {
+      const field = document.getElementById(fieldId);
+      const errorEl = document.getElementById(fieldId + '-error');
+      if (field) field.style.borderColor = '#1F2030';
+      if (errorEl) errorEl.classList.add('hidden');
+    }
+
+    function validateEmail(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    registerForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      let isValid = true;
+
+      clearError('fullname');
+      clearError('email');
+
+      const fullname = document.getElementById('fullname').value.trim();
+      const email = document.getElementById('email').value.trim();
+
+      if (!fullname) {
+        showError('fullname', 'Vui lòng nhập họ và tên');
+        isValid = false;
+      }
+
+      if (!email) {
+        showError('email', 'Vui lòng nhập email');
+        isValid = false;
+      } else if (!validateEmail(email)) {
+        showError('email', 'Email không hợp lệ');
+        isValid = false;
+      }
+
+      if (isValid) {
+        registerForm.classList.add('hidden');
+        successMessage.classList.remove('hidden');
+        lucide.createIcons();
+      }
+    });
+
+    ['fullname', 'email'].forEach(id => {
+      const field = document.getElementById(id);
+      if (field) {
+        field.addEventListener('input', () => clearError(id));
+      }
+    });
+
+    // 7. Newsletter form
+    const newsletterForm = document.getElementById('newsletter-form');
+    const newsletterSuccess = document.getElementById('newsletter-success');
+
+    newsletterForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = document.getElementById('newsletter-email').value.trim();
+      if (validateEmail(email)) {
+        newsletterSuccess.classList.remove('hidden');
+        newsletterForm.reset();
+        setTimeout(() => newsletterSuccess.classList.add('hidden'), 4000);
+      } else {
+        const input = document.getElementById('newsletter-email');
+        input.style.borderColor = '#EF4444';
+        setTimeout(() => input.style.borderColor = '#1F2030', 2000);
+      }
+    });
+
+    // 8. FAQ - re-init icons after details toggle
+    document.querySelectorAll('details').forEach(detail => {
+      detail.addEventListener('toggle', () => {
+        lucide.createIcons();
+      });
+    });
+  </script>
+</body>
+</html>
