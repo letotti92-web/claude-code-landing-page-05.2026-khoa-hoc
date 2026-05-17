@@ -193,6 +193,27 @@
       height: 1px;
       background: linear-gradient(90deg, transparent, #1F2025, transparent);
     }
+
+    .avatar-initials {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      color: #A8B5A0;
+      background: rgba(168, 181, 160, 0.08);
+      border: 1px solid rgba(168, 181, 160, 0.2);
+    }
+
+    .schedule-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 600;
+    }
   </style>
 </head>
 <body class="font-body antialiased">
@@ -210,6 +231,7 @@
         <!-- Desktop Menu -->
         <ul class="hidden lg:flex items-center gap-8" role="menubar">
           <li><a href="#course" class="text-text-muted hover:text-white transition-colors duration-200 font-medium" role="menuitem">Khóa học</a></li>
+          <li><a href="#instructors" class="text-text-muted hover:text-white transition-colors duration-200 font-medium" role="menuitem">Giảng viên</a></li>
           <li><a href="#roadmap" class="text-text-muted hover:text-white transition-colors duration-200 font-medium" role="menuitem">Lộ trình</a></li>
           <li><a href="#students" class="text-text-muted hover:text-white transition-colors duration-200 font-medium" role="menuitem">Học viên</a></li>
           <li><a href="#faq" class="text-text-muted hover:text-white transition-colors duration-200 font-medium" role="menuitem">FAQ</a></li>
@@ -231,6 +253,7 @@
       <div id="mobile-menu" class="mobile-menu lg:hidden" role="menu" aria-label="Menu di động">
         <div class="py-4 space-y-1 border-t" style="border-color: #1F2025;">
           <a href="#course" class="block px-4 py-3 text-text-muted hover:text-white hover:bg-white/5 rounded-lg transition-colors" role="menuitem">Khóa học</a>
+          <a href="#instructors" class="block px-4 py-3 text-text-muted hover:text-white hover:bg-white/5 rounded-lg transition-colors" role="menuitem">Giảng viên</a>
           <a href="#roadmap" class="block px-4 py-3 text-text-muted hover:text-white hover:bg-white/5 rounded-lg transition-colors" role="menuitem">Lộ trình</a>
           <a href="#students" class="block px-4 py-3 text-text-muted hover:text-white hover:bg-white/5 rounded-lg transition-colors" role="menuitem">Học viên</a>
           <a href="#faq" class="block px-4 py-3 text-text-muted hover:text-white hover:bg-white/5 rounded-lg transition-colors" role="menuitem">FAQ</a>
@@ -270,6 +293,18 @@
             <p class="text-text-muted text-lg leading-relaxed max-w-xl">
               Khóa học 12 buổi (24 tiết) trang bị kỹ năng massage body, chăm sóc da mặt và trị liệu thư giãn chuyên nghiệp. Chứng chỉ sau khóa học.
             </p>
+
+            <!-- Schedule Badges -->
+            <div class="flex flex-wrap gap-3">
+              <div class="schedule-badge" style="background: rgba(87, 92, 85, 0.12); border: 1px solid rgba(87, 92, 85, 0.3); color: #A8B5A0;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                Lớp Sáng: T7, CN — 08:00–11:30
+              </div>
+              <div class="schedule-badge" style="background: rgba(87, 92, 85, 0.08); border: 1px solid rgba(87, 92, 85, 0.2); color: #8A8E98;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                Lớp Tối: T3, T5, T7 — 18:30–21:00
+              </div>
+            </div>
 
             <!-- CTA Buttons -->
             <div class="flex flex-col sm:flex-row gap-4 pt-2">
@@ -322,7 +357,7 @@
         </div>
 
         <!-- Stats Bar -->
-        <div class="mt-16 lg:mt-20 grid grid-cols-3 gap-4 sm:gap-8" role="list" aria-label="Thống kê khóa học">
+        <div class="mt-16 lg:mt-20 grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6" role="list" aria-label="Thống kê khóa học">
           <div class="text-center p-4 sm:p-6 rounded-2xl card-hover" style="background: #13151A; border: 1px solid #1F2025;" role="listitem">
             <p class="font-heading font-extrabold text-3xl sm:text-4xl gradient-text">24</p>
             <p class="text-text-muted text-sm mt-2 font-medium">Tiết học</p>
@@ -330,6 +365,10 @@
           <div class="text-center p-4 sm:p-6 rounded-2xl card-hover" style="background: #13151A; border: 1px solid #1F2025;" role="listitem">
             <p class="font-heading font-extrabold text-3xl sm:text-4xl gradient-text">12</p>
             <p class="text-text-muted text-sm mt-2 font-medium">Buổi thực hành</p>
+          </div>
+          <div class="text-center p-4 sm:p-6 rounded-2xl card-hover" style="background: #13151A; border: 1px solid #1F2025;" role="listitem">
+            <p class="font-heading font-extrabold text-3xl sm:text-4xl gradient-text">2</p>
+            <p class="text-text-muted text-sm mt-2 font-medium">Lớp Sáng & Tối</p>
           </div>
           <div class="text-center p-4 sm:p-6 rounded-2xl card-hover" style="background: #13151A; border: 1px solid #1F2025;" role="listitem">
             <p class="font-heading font-extrabold text-3xl sm:text-4xl gradient-text">Cert</p>
@@ -429,8 +468,8 @@
             <div class="inline-flex items-center justify-center w-14 h-14 rounded-xl mb-5" style="background: rgba(168, 181, 160, 0.1);">
               <i data-lucide="user-check" class="w-7 h-7 text-accent" aria-hidden="true"></i>
             </div>
-            <h3 class="font-heading font-bold text-xl text-white mb-2">Giảng viên 10+ năm kinh nghiệm</h3>
-            <p class="text-text-muted leading-relaxed">Đội ngũ giảng viên tốt nghiệp chuyên ngành, từng làm việc tại các Spa 5 sao và Resort cao cấp.</p>
+            <h3 class="font-heading font-bold text-xl text-white mb-2">GV Trần Thị Minh Châu &amp; Lê Hoàng Nam</h3>
+            <p class="text-text-muted leading-relaxed">Giảng viên chuyên nghiệp: Massage &amp; Aromatherapy (GV Châu) và Facial Care &amp; Wellness (GV Nam).</p>
           </div>
 
           <!-- Feature 4 -->
@@ -535,6 +574,110 @@
       </div>
     </section>
 
+    <!-- ========== 5B. INSTRUCTORS ========== -->
+    <section id="instructors" class="py-16 lg:py-20 px-4 sm:px-6 lg:px-8" aria-labelledby="instructors-heading">
+      <div class="max-w-[1200px] mx-auto">
+        <div class="text-center mb-12 reveal">
+          <h2 id="instructors-heading" class="font-heading font-bold text-3xl sm:text-4xl lg:text-[40px] text-white mb-4">
+            Đội Ngũ Giảng Viên
+          </h2>
+          <p class="text-text-muted text-lg max-w-2xl mx-auto">
+            Học với chuyên gia thực chiến từng làm việc tại các Spa 5 sao và Resort cao cấp
+          </p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
+
+          <!-- Instructor 1: Trần Thị Minh Châu -->
+          <div class="p-6 sm:p-8 rounded-2xl reveal" style="background: linear-gradient(145deg, #13151A, #1a1c22); border: 1px solid #1F2025;" role="article" aria-label="Giảng viên Trần Thị Minh Châu">
+            <div class="flex flex-col items-center text-center">
+              <!-- Avatar with initials -->
+              <div class="avatar-initials w-24 h-24 rounded-full text-2xl mb-5" aria-hidden="true">
+                TTC
+              </div>
+              <h3 class="font-heading font-bold text-xl text-white mb-1">Trần Thị Minh Châu</h3>
+              <p class="text-accent font-medium text-sm mb-4">Giảng viên Trị liệu Spa</p>
+              <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold mb-5" style="background: rgba(168, 181, 160, 0.08); border: 1px solid rgba(168, 181, 160, 0.2); color: #A8B5A0;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                Chuyên gia Massage &amp; Aromatherapy
+              </div>
+              <div class="w-full space-y-2 text-left">
+                <div class="flex items-start gap-2 text-sm">
+                  <svg class="w-4 h-4 text-primary-light mt-0.5 flex-shrink-0" style="color: #6B7268;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span class="text-text-muted">8+ năm kinh nghiệm tại Resort &amp; Spa 5 sao</span>
+                </div>
+                <div class="flex items-start gap-2 text-sm">
+                  <svg class="w-4 h-4 text-primary-light mt-0.5 flex-shrink-0" style="color: #6B7268;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span class="text-text-muted">Chứng chỉ quốc tế về Massage Thụy Điển</span>
+                </div>
+                <div class="flex items-start gap-2 text-sm">
+                  <svg class="w-4 h-4 text-primary-light mt-0.5 flex-shrink-0" style="color: #6B7268;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span class="text-text-muted">Chuyên gia Aromatherapy &amp; Hot Stone Therapy</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Instructor 2: Lê Hoàng Nam -->
+          <div class="p-6 sm:p-8 rounded-2xl reveal" style="background: linear-gradient(145deg, #13151A, #1a1c22); border: 1px solid #1F2025;" role="article" aria-label="Giảng viên Lê Hoàng Nam">
+            <div class="flex flex-col items-center text-center">
+              <!-- Avatar with initials -->
+              <div class="avatar-initials w-24 h-24 rounded-full text-2xl mb-5" aria-hidden="true">
+                LHN
+              </div>
+              <h3 class="font-heading font-bold text-xl text-white mb-1">Lê Hoàng Nam</h3>
+              <p class="text-accent font-medium text-sm mb-4">Giảng viên Chăm sóc da</p>
+              <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold mb-5" style="background: rgba(168, 181, 160, 0.08); border: 1px solid rgba(168, 181, 160, 0.2); color: #A8B5A0;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                Chuyên gia Facial Care &amp; Wellness
+              </div>
+              <div class="w-full space-y-2 text-left">
+                <div class="flex items-start gap-2 text-sm">
+                  <svg class="w-4 h-4 text-primary-light mt-0.5 flex-shrink-0" style="color: #6B7268;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span class="text-text-muted">6+ năm kinh nghiệm chăm sóc da &amp; Wellness</span>
+                </div>
+                <div class="flex items-start gap-2 text-sm">
+                  <svg class="w-4 h-4 text-primary-light mt-0.5 flex-shrink-0" style="color: #6B7268;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span class="text-text-muted">Tốt nghiệp chuyên ngành Da liễu &amp; Thẩm mỹ</span>
+                </div>
+                <div class="flex items-start gap-2 text-sm">
+                  <svg class="w-4 h-4 text-primary-light mt-0.5 flex-shrink-0" style="color: #6B7268;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span class="text-text-muted">Đào tạo 200+ học viên thành nghề</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Schedule info below instructors -->
+        <div class="mt-10 reveal">
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 p-5 rounded-2xl" style="background: rgba(87, 92, 85, 0.06); border: 1px solid rgba(87, 92, 85, 0.2);">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background: rgba(168, 181, 160, 0.1);">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A8B5A0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div>
+                <p class="font-heading font-semibold text-white text-sm">Lớp Sáng</p>
+                <p class="text-text-muted text-xs">Thứ Bảy &amp; Chủ Nhật — 08:00–11:30</p>
+              </div>
+            </div>
+            <div class="h-8 w-px hidden sm:block" style="background: #1F2025;" aria-hidden="true"></div>
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background: rgba(168, 181, 160, 0.06);">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6B7268" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div>
+                <p class="font-heading font-semibold text-white text-sm">Lớp Tối</p>
+                <p class="text-text-muted text-xs">Thứ Ba, Thứ Năm &amp; Thứ Bảy — 18:30–21:00</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8"><div class="section-divider"></div></div>
+
     <!-- ========== 6. COURSE CONTENT (Timeline) ========== -->
     <section id="roadmap" class="py-16 lg:py-20 px-4 sm:px-6 lg:px-8" aria-labelledby="roadmap-heading">
       <div class="max-w-[1200px] mx-auto">
@@ -543,7 +686,7 @@
             Chương Trình 12 Buổi
           </h2>
           <p class="text-text-muted text-lg max-w-2xl mx-auto">
-            24 tiết học thực hành toàn diện, từ massage body đến chăm sóc da mặt
+            24 tiết học thực hành toàn diện, từ massage body đến chăm sóc da mặt. Học viên chọn lớp Sáng (T7, CN) hoặc lớp Tối (T3, T5, T7).
           </p>
         </div>
 
@@ -796,6 +939,25 @@
             </div>
 
             <div>
+              <label for="class-schedule" class="block text-sm font-medium text-text-muted mb-2">Chọn lớp học <span class="text-accent" aria-label="bắt buộc">*</span></label>
+              <select
+                id="class-schedule"
+                name="class-schedule"
+                required
+                class="w-full px-4 py-3.5 rounded-xl text-white outline-none transition-all duration-200 appearance-none cursor-pointer"
+                style="background: #13151A; border: 1px solid #1F2025;"
+                aria-required="true"
+                aria-describedby="class-schedule-error"
+              >
+                <option value="" disabled selected>-- Chọn lớp bạn muốn tham gia --</option>
+                <option value="lop-sang">Lớp Sáng — T7, CN (08:00–11:30)</option>
+                <option value="lop-toi">Lớp Tối — T3, T5, T7 (18:30–21:00)</option>
+                <option value="chua-chon">Chưa chắc chắn, cần tư vấn</option>
+              </select>
+              <p id="class-schedule-error" class="text-red-400 text-sm mt-1 hidden" role="alert"></p>
+            </div>
+
+            <div>
               <label for="industry" class="block text-sm font-medium text-text-muted mb-2">Mục tiêu nghề nghiệp <span class="text-text-muted/50">(tùy chọn)</span></label>
               <input
                 type="text"
@@ -878,7 +1040,7 @@
               <i data-lucide="chevron-down" class="w-5 h-5 text-text-muted flex-shrink-0 faq-chevron" aria-hidden="true"></i>
             </summary>
             <div class="faq-content px-6 pb-6">
-              <p class="text-text-muted leading-relaxed">Khóa học kéo dài 6 tuần với 12 buổi (24 tiết). Mỗi tuần học 2 buổi, mỗi buổi 2 tiết (2 tiếng). Lịch học linh hoạt, có lớp sáng và lớp tối.</p>
+              <p class="text-text-muted leading-relaxed">Khóa học kéo dài 6 tuần với 12 buổi (24 tiết). Lớp Sáng học T7 &amp; CN (08:00–11:30), lớp Tối học T3, T5 &amp; T7 (18:30–21:00). Mỗi buổi 2 tiết (2 tiếng).</p>
             </div>
           </details>
 
@@ -1102,10 +1264,12 @@
       clearError('fullname');
       clearError('email');
       clearError('topic');
+      clearError('class-schedule');
 
       const fullname = document.getElementById('fullname').value.trim();
       const email = document.getElementById('email').value.trim();
       const topic = document.getElementById('topic').value;
+      const classSchedule = document.getElementById('class-schedule').value;
 
       if (!fullname) {
         showError('fullname', 'Vui lòng nhập họ và tên');
@@ -1125,6 +1289,11 @@
         isValid = false;
       }
 
+      if (!classSchedule) {
+        showError('class-schedule', 'Vui lòng chọn lớp học');
+        isValid = false;
+      }
+
       if (isValid) {
         registerForm.classList.add('hidden');
         successMessage.classList.remove('hidden');
@@ -1132,7 +1301,7 @@
       }
     });
 
-    ['fullname', 'email', 'topic'].forEach(id => {
+    ['fullname', 'email', 'topic', 'class-schedule'].forEach(id => {
       const field = document.getElementById(id);
       if (field) {
         field.addEventListener(id === 'topic' ? 'change' : 'input', () => clearError(id));
