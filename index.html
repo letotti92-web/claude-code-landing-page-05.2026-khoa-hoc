@@ -153,6 +153,18 @@
       outline-offset: 2px;
       border-radius: 4px;
     }
+
+    /* Select arrow */
+    #topic {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23A0A0B0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      padding-right: 48px;
+    }
+    #topic option {
+      background: #13141F;
+      color: #FFFFFF;
+    }
   </style>
 </head>
 <body class="font-body antialiased">
@@ -730,6 +742,29 @@
               >
             </div>
 
+            <div>
+              <label for="topic" class="block text-sm font-medium text-text-muted mb-2">Nội dung cần tư vấn <span class="text-primary" aria-label="bắt buộc">*</span></label>
+              <select
+                id="topic"
+                name="topic"
+                required
+                class="w-full px-4 py-3.5 rounded-xl text-white outline-none transition-all duration-200 appearance-none cursor-pointer"
+                style="background: #13141F; border: 1px solid #1F2030;"
+                aria-required="true"
+                aria-describedby="topic-error"
+              >
+                <option value="" disabled selected>-- Chọn nội dung bạn quan tâm --</option>
+                <option value="firebase-backend">Firebase Backend</option>
+                <option value="frontend">Frontend Development</option>
+                <option value="deploy-vercel">Deploy lên Vercel</option>
+                <option value="prompt-engineering">Prompt Engineering</option>
+                <option value="debug-refactor">Debug & Refactor</option>
+                <option value="fullstack">Toàn diện (Backend + Frontend + Deploy)</option>
+                <option value="other">Khác</option>
+              </select>
+              <p id="topic-error" class="text-red-400 text-sm mt-1 hidden" role="alert"></p>
+            </div>
+
             <button
               type="submit"
               class="w-full bg-primary hover:bg-primary-hover text-white font-bold text-lg py-4 rounded-xl btn-primary flex items-center justify-center gap-2 mt-2"
@@ -1056,9 +1091,11 @@
 
       clearError('fullname');
       clearError('email');
+      clearError('topic');
 
       const fullname = document.getElementById('fullname').value.trim();
       const email = document.getElementById('email').value.trim();
+      const topic = document.getElementById('topic').value;
 
       if (!fullname) {
         showError('fullname', 'Vui lòng nhập họ và tên');
@@ -1073,6 +1110,11 @@
         isValid = false;
       }
 
+      if (!topic) {
+        showError('topic', 'Vui lòng chọn nội dung cần tư vấn');
+        isValid = false;
+      }
+
       if (isValid) {
         registerForm.classList.add('hidden');
         successMessage.classList.remove('hidden');
@@ -1080,10 +1122,10 @@
       }
     });
 
-    ['fullname', 'email'].forEach(id => {
+    ['fullname', 'email', 'topic'].forEach(id => {
       const field = document.getElementById(id);
       if (field) {
-        field.addEventListener('input', () => clearError(id));
+        field.addEventListener(id === 'topic' ? 'change' : 'input', () => clearError(id));
       }
     });
 
