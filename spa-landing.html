@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Khóa Trị Liệu Spa — Softech Aptech Đà Nẵng</title>
+  <meta name="description" content="Khóa học trị liệu Spa chuyên nghiệp 12 buổi (24 tiết). Massage body, chăm sóc da, trị liệu thư giãn. Khai giảng tháng 6/2026. Học phí ưu đãi 2.500.000đ.">
+  <meta property="og:title" content="Khóa Trị Liệu Spa — Chăm sóc sức khỏe chuyên nghiệp">
+  <meta property="og:description" content="12 buổi thực hành, chứng chỉ sau khóa học. Massage body, chăm sóc da, trị liệu thư giãn.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#090A10">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bg: '#090A10',
+            'bg-soft': '#0D0E12',
+            card: '#13151A',
+            border: '#1F2025',
+            primary: '#575C55',
+            'primary-light': '#6B7268',
+            'primary-hover': '#4A4E49',
+            'primary-glow': 'rgba(87, 92, 85, 0.25)',
+            'text-main': '#FFFFFF',
+            'text-muted': '#8A8E98',
+            accent: '#A8B5A0',
+            'accent-light': '#C4CFB5',
+          },
+          fontFamily: {
+            heading: ['Plus Jakarta Sans', 'sans-serif'],
+            body: ['Inter', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { background-color: #090A10; color: #FFFFFF; font-family: 'Inter', sans-serif; }
+    h1, h2, h3, h4, h5, h6, .font-heading { font-family: 'Plus Jakarta Sans', sans-serif; }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #A8B5A0, #C4CFB5);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .gradient-text-warm {
+      background: linear-gradient(135deg, #575C55, #A8B5A0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .glow-box {
+      box-shadow: 0 0 80px rgba(87, 92, 85, 0.2);
+    }
+
+    .glow-box-accent {
+      box-shadow: 0 0 60px rgba(168, 181, 160, 0.15);
+    }
+
+    .card-hover {
+      transition: border-color 300ms ease, transform 300ms ease, box-shadow 300ms ease;
+    }
+    .card-hover:hover {
+      border-color: #575C55;
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(87, 92, 85, 0.12);
+    }
+
+    .btn-primary {
+      transition: background-color 200ms ease, transform 150ms ease;
+    }
+    .btn-primary:hover { background-color: #4A4E49; }
+    .btn-primary:active { transform: scale(0.98); }
+
+    .btn-secondary {
+      transition: border-color 200ms ease, color 200ms ease, transform 150ms ease;
+    }
+    .btn-secondary:hover { border-color: #575C55; color: #A8B5A0; }
+    .btn-secondary:active { transform: scale(0.98); }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 600ms ease, transform 600ms ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .nav-scrolled {
+      background: rgba(9, 10, 16, 0.98) !important;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 rgba(31, 32, 37, 0.8);
+    }
+
+    details summary {
+      list-style: none;
+    }
+    details summary::-webkit-details-marker {
+      display: none;
+    }
+    .faq-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 400ms ease, padding 400ms ease;
+    }
+    details[open] .faq-content {
+      max-height: 500px;
+      padding-top: 16px;
+    }
+    .faq-chevron {
+      transition: transform 300ms ease;
+    }
+    details[open] .faq-chevron {
+      transform: rotate(180deg);
+    }
+
+    .mobile-menu {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 300ms ease;
+    }
+    .mobile-menu.open {
+      max-height: 400px;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-12px) rotate(2deg); }
+    }
+    @keyframes float-reverse {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-8px) rotate(-2deg); }
+    }
+    @keyframes pulse-glow {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 0.8; }
+    }
+    .float-anim {
+      animation: float 4s ease-in-out infinite;
+    }
+    .float-anim-2 {
+      animation: float-reverse 5s ease-in-out infinite;
+    }
+    .pulse-glow {
+      animation: pulse-glow 3s ease-in-out infinite;
+    }
+
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #090A10; }
+    ::-webkit-scrollbar-thumb { background: #1F2025; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #575C55; }
+
+    :focus-visible {
+      outline: 2px solid #575C55;
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+
+    #topic {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%238A8E98' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      padding-right: 48px;
+    }
+    #topic option {
+      background: #13151A;
+      color: #FFFFFF;
+    }
+
+    .lotus-petal {
+      position: absolute;
+      border-radius: 50% 50% 50% 0;
+      opacity: 0.08;
+    }
+
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #1F2025, transparent);
+    }
+  </style>
+</head>
+<body class="font-body antialiased">
+
+  <!-- ========== 1. NAVIGATION ========== -->
+  <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" style="background: rgba(9, 10, 16, 0.6); backdrop-filter: blur(8px);">
+    <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="flex items-center justify-between h-16 lg:h-20" aria-label="Main navigation">
+
+        <!-- Logo -->
+        <a href="#" class="font-heading font-extrabold text-2xl gradient-text" aria-label="Spa Therapy - Trang chủ">
+          Spa Therapy
+        </a>
+
+        <!-- Desktop Menu -->
+        <ul class="hidden lg:flex items-center gap-8" role="menubar">
+          <li><a href="#course" class="text-text-muted hover:text-white transition-colors duration-200 font-medium" role="menuitem">Khóa học</a></li>
+          <li><a href="#roadmap" class="text-text-muted hover:text-white transition-colors duration-200 font-medium" role="menuitem">Lộ trình</a></li>
+          <li><a href="#students" class="text-text-muted hover:text-white transition-colors duration-200 font-medium" role="menuitem">Học viên</a></li>
+          <li><a href="#faq" class="text-text-muted hover:text-white transition-colors duration-200 font-medium" role="menuitem">FAQ</a></li>
+        </ul>
+
+        <!-- CTA Button -->
+        <a href="#register" class="hidden lg:inline-flex items-center gap-2 bg-primary hover:bg-primary-hover text-white font-semibold px-6 py-2.5 rounded-lg btn-primary" aria-label="Đăng ký khóa Trị liệu Spa">
+          Đăng Ký Ngay
+          <i data-lucide="arrow-right" class="w-4 h-4" aria-hidden="true"></i>
+        </a>
+
+        <!-- Mobile Hamburger -->
+        <button id="menu-toggle" class="lg:hidden text-white p-2 rounded-lg hover:bg-white/5 transition-colors" aria-label="Mở menu điều hướng" aria-expanded="false" aria-controls="mobile-menu">
+          <i data-lucide="menu" class="w-6 h-6" id="menu-icon" aria-hidden="true"></i>
+        </button>
+      </nav>
+
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="mobile-menu lg:hidden" role="menu" aria-label="Menu di động">
+        <div class="py-4 space-y-1 border-t" style="border-color: #1F2025;">
+          <a href="#course" class="block px-4 py-3 text-text-muted hover:text-white hover:bg-white/5 rounded-lg transition-colors" role="menuitem">Khóa học</a>
+          <a href="#roadmap" class="block px-4 py-3 text-text-muted hover:text-white hover:bg-white/5 rounded-lg transition-colors" role="menuitem">Lộ trình</a>
+          <a href="#students" class="block px-4 py-3 text-text-muted hover:text-white hover:bg-white/5 rounded-lg transition-colors" role="menuitem">Học viên</a>
+          <a href="#faq" class="block px-4 py-3 text-text-muted hover:text-white hover:bg-white/5 rounded-lg transition-colors" role="menuitem">FAQ</a>
+          <a href="#register" class="block mx-4 mt-2 text-center bg-primary hover:bg-primary-hover text-white font-semibold px-6 py-3 rounded-lg transition-colors" role="menuitem">Đăng Ký Ngay</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ========== 2. HERO SECTION ========== -->
+    <section class="pt-28 lg:pt-36 pb-16 lg:pb-24 px-4 sm:px-6 lg:px-8 overflow-hidden relative" aria-labelledby="hero-heading">
+      <!-- Decorative background elements -->
+      <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <div class="lotus-petal w-80 h-80" style="top: 5%; right: -5%; background: radial-gradient(circle, #575C55, transparent 70%);"></div>
+        <div class="lotus-petal w-64 h-64 float-anim-2" style="bottom: 10%; left: -3%; background: radial-gradient(circle, #A8B5A0, transparent 70%);"></div>
+        <div class="absolute inset-0" style="background: radial-gradient(ellipse at 50% 0%, rgba(87, 92, 85, 0.08) 0%, transparent 60%);"></div>
+      </div>
+
+      <div class="max-w-[1200px] mx-auto relative z-10">
+        <div class="grid lg:grid-cols-5 gap-12 lg:gap-8 items-center">
+
+          <!-- Left Column -->
+          <div class="lg:col-span-3 space-y-6">
+            <!-- Badge -->
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium" style="background: rgba(87, 92, 85, 0.12); border: 1px solid rgba(87, 92, 85, 0.3);">
+              <span>✨</span>
+              <span class="text-accent font-semibold">Khai giảng tháng 6/2026</span>
+            </div>
+
+            <!-- Heading -->
+            <h1 id="hero-heading" class="font-heading font-extrabold text-4xl sm:text-5xl lg:text-[52px] leading-tight tracking-tight">
+              Trị Liệu Spa <span class="gradient-text">Chuyên Nghiệp</span>
+            </h1>
+
+            <!-- Subtitle -->
+            <p class="text-text-muted text-lg leading-relaxed max-w-xl">
+              Khóa học 12 buổi (24 tiết) trang bị kỹ năng massage body, chăm sóc da mặt và trị liệu thư giãn chuyên nghiệp. Chứng chỉ sau khóa học.
+            </p>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 pt-2">
+              <a href="#register" class="inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary-hover text-white font-semibold px-8 py-4 rounded-xl btn-primary text-lg" aria-label="Đăng ký khóa Trị liệu Spa">
+                Đăng Ký Khóa Học
+                <i data-lucide="arrow-right" class="w-5 h-5" aria-hidden="true"></i>
+              </a>
+              <a href="#roadmap" class="inline-flex items-center justify-center gap-2 border text-text-muted hover:border-primary hover:text-accent px-8 py-4 rounded-xl btn-secondary text-lg" aria-label="Xem lộ trình khóa học">
+                <i data-lucide="layout-list" class="w-5 h-5" aria-hidden="true"></i>
+                Xem Lộ Trình
+              </a>
+            </div>
+
+            <!-- Price Tag -->
+            <div class="flex items-center gap-3 pt-2">
+              <span class="text-text-muted line-through text-xl">3.500.000đ</span>
+              <span class="font-heading font-extrabold text-3xl gradient-text">2.500.000đ</span>
+              <span class="px-3 py-1 bg-primary/20 text-accent-light text-sm font-bold rounded-full">Giảm 30%</span>
+            </div>
+          </div>
+
+          <!-- Right Column - Visual -->
+          <div class="lg:col-span-2 flex justify-center">
+            <div class="relative w-full max-w-sm aspect-square float-anim" aria-hidden="true">
+              <!-- Outer glow ring -->
+              <div class="absolute inset-0 rounded-full pulse-glow" style="background: radial-gradient(circle, rgba(168, 181, 160, 0.06), transparent 70%);"></div>
+              <!-- Main visual -->
+              <div class="relative w-full h-full rounded-full glow-box flex items-center justify-center overflow-hidden" style="background: linear-gradient(145deg, #13151A, #1a1c22); border: 1px solid #1F2025;">
+                <!-- Lotus petals decorative -->
+                <div class="absolute inset-0 overflow-hidden rounded-full" aria-hidden="true">
+                  <div class="lotus-petal w-48 h-48 float-anim" style="top: 15%; left: 50%; transform: translateX(-50%); background: rgba(168, 181, 160, 0.05);"></div>
+                  <div class="lotus-petal w-32 h-32 float-anim-2" style="bottom: 20%; left: 10%; background: rgba(87, 92, 85, 0.06);"></div>
+                </div>
+                <!-- Center icon -->
+                <div class="text-center z-10">
+                  <div class="inline-flex items-center justify-center w-28 h-28 rounded-full mb-4 float-anim" style="background: rgba(168, 181, 160, 0.1); border: 1px solid rgba(168, 181, 160, 0.2);">
+                    <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#A8B5A0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M12 2a10 10 0 0 1 10 10c0 5.52-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2z"/>
+                      <path d="M12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6z"/>
+                      <path d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4"/>
+                      <circle cx="12" cy="12" r="2"/>
+                    </svg>
+                  </div>
+                  <p class="font-heading font-bold text-lg text-white">Spa Therapy</p>
+                  <p class="text-text-muted text-sm mt-1">Massage & Wellness</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stats Bar -->
+        <div class="mt-16 lg:mt-20 grid grid-cols-3 gap-4 sm:gap-8" role="list" aria-label="Thống kê khóa học">
+          <div class="text-center p-4 sm:p-6 rounded-2xl card-hover" style="background: #13151A; border: 1px solid #1F2025;" role="listitem">
+            <p class="font-heading font-extrabold text-3xl sm:text-4xl gradient-text">24</p>
+            <p class="text-text-muted text-sm mt-2 font-medium">Tiết học</p>
+          </div>
+          <div class="text-center p-4 sm:p-6 rounded-2xl card-hover" style="background: #13151A; border: 1px solid #1F2025;" role="listitem">
+            <p class="font-heading font-extrabold text-3xl sm:text-4xl gradient-text">12</p>
+            <p class="text-text-muted text-sm mt-2 font-medium">Buổi thực hành</p>
+          </div>
+          <div class="text-center p-4 sm:p-6 rounded-2xl card-hover" style="background: #13151A; border: 1px solid #1F2025;" role="listitem">
+            <p class="font-heading font-extrabold text-3xl sm:text-4xl gradient-text">Cert</p>
+            <p class="text-text-muted text-sm mt-2 font-medium">Chứng chỉ sau khóa</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8"><div class="section-divider"></div></div>
+
+    <!-- ========== 3. PROBLEM STATEMENT ========== -->
+    <section id="problems" class="py-16 lg:py-20 px-4 sm:px-6 lg:px-8" aria-labelledby="problems-heading">
+      <div class="max-w-[1200px] mx-auto">
+        <div class="text-center mb-12 reveal">
+          <h2 id="problems-heading" class="font-heading font-bold text-3xl sm:text-4xl lg:text-[40px] text-white mb-4">
+            Bạn Đang Gặp Những Vấn Đề Gì?
+          </h2>
+          <p class="text-text-muted text-lg max-w-2xl mx-auto">
+            Những thách thức phổ biến khi theo đuổi nghề trị liệu Spa
+          </p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-4 sm:gap-6">
+          <!-- Pain Point 1 -->
+          <div class="p-6 sm:p-8 rounded-2xl card-hover cursor-default reveal" style="background: #13151A; border: 1px solid #1F2025;" role="article">
+            <div class="inline-flex items-center justify-center w-14 h-14 rounded-xl mb-5" style="background: rgba(87, 92, 85, 0.12);">
+              <i data-lucide="heart-crack" class="w-7 h-7 text-primary-light" aria-hidden="true"></i>
+            </div>
+            <h3 class="font-heading font-bold text-xl text-white mb-2">Mong muốn chuyển nghề nhưng không biết bắt đầu từ đâu</h3>
+            <p class="text-text-muted leading-relaxed">Thị trường Spa ngày càng phát triển mạnh, nhưng bạn chưa có kỹ năng chuyên môn và lộ trình rõ ràng để bắt đầu.</p>
+          </div>
+
+          <!-- Pain Point 2 -->
+          <div class="p-6 sm:p-8 rounded-2xl card-hover cursor-default reveal" style="background: #13151A; border: 1px solid #1F2025;" role="article">
+            <div class="inline-flex items-center justify-center w-14 h-14 rounded-xl mb-5" style="background: rgba(87, 92, 85, 0.12);">
+              <i data-lucide="scissors" class="w-7 h-7 text-primary-light" aria-hidden="true"></i>
+            </div>
+            <h3 class="font-heading font-bold text-xl text-white mb-2">Kỹ năng tự học trên mạng không đủ chuyên nghiệp</h3>
+            <p class="text-text-muted leading-relaxed">Các video online thiếu hướng dẫn từng bước, không có giảng viên chỉnh sửa tư thế, kỹ thuật đúng cách dễ gây chấn thương.</p>
+          </div>
+
+          <!-- Pain Point 3 -->
+          <div class="p-6 sm:p-8 rounded-2xl card-hover cursor-default reveal" style="background: #13151A; border: 1px solid #1F2025;" role="article">
+            <div class="inline-flex items-center justify-center w-14 h-14 rounded-xl mb-5" style="background: rgba(87, 92, 85, 0.12);">
+              <i data-lucide="badge-check" class="w-7 h-7 text-primary-light" aria-hidden="true"></i>
+            </div>
+            <h3 class="font-heading font-bold text-xl text-white mb-2">Sợ không có chứng chỉ để xin việc</h3>
+            <p class="text-text-muted leading-relaxed">Không có bằng cấp, chứng chỉ nghề khiến bạn khó cạnh tranh trong ngành Spa cao cấp, khách sạn 5 sao.</p>
+          </div>
+
+          <!-- Pain Point 4 -->
+          <div class="p-6 sm:p-8 rounded-2xl card-hover cursor-default reveal" style="background: #13151A; border: 1px solid #1F2025;" role="article">
+            <div class="inline-flex items-center justify-center w-14 h-14 rounded-xl mb-5" style="background: rgba(87, 92, 85, 0.12);">
+              <i data-lucide="leaf" class="w-7 h-7 text-primary-light" aria-hidden="true"></i>
+            </div>
+            <h3 class="font-heading font-bold text-xl text-white mb-2">Muốn chăm sóc sức khỏe bản thân và gia đình</h3>
+            <p class="text-text-muted leading-relaxed">Học kỹ năng trị liệu để tự chăm sóc sức khỏe, giảm stress và phòng bệnh cho người thân một cách khoa học.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 4. SOLUTION SECTION ========== -->
+    <section id="course" class="py-16 lg:py-20 px-4 sm:px-6 lg:px-8" aria-labelledby="solution-heading">
+      <div class="max-w-[1200px] mx-auto">
+        <div class="text-center mb-12 reveal">
+          <h2 id="solution-heading" class="font-heading font-bold text-3xl sm:text-4xl lg:text-[40px] text-white mb-4">
+            Giải Pháp Toàn Diện Cho Bạn
+          </h2>
+          <p class="text-text-muted text-lg max-w-3xl mx-auto leading-relaxed">
+            Khóa học 12 buổi thực hành chuyên sâu, học đến đâu thực hành đến đó với sự hướng dẫn trực tiếp từ giảng viên giàu kinh nghiệm
+          </p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          <!-- Feature 1 -->
+          <div class="p-6 sm:p-8 rounded-2xl card-hover cursor-default reveal" style="background: #13151A; border: 1px solid #1F2025;" role="article">
+            <div class="inline-flex items-center justify-center w-14 h-14 rounded-xl mb-5" style="background: rgba(168, 181, 160, 0.1);">
+              <i data-lucide="hand" class="w-7 h-7 text-accent" aria-hidden="true"></i>
+            </div>
+            <h3 class="font-heading font-bold text-xl text-white mb-2">Thực hành 80% thời lượng</h3>
+            <p class="text-text-muted leading-relaxed">12 buổi chủ yếu thực hành trên mô hình thật, giảng viên hướng dẫn từng động tác và tư thế chuẩn.</p>
+          </div>
+
+          <!-- Feature 2 -->
+          <div class="p-6 sm:p-8 rounded-2xl card-hover cursor-default reveal" style="background: #13151A; border: 1px solid #1F2025;" role="article">
+            <div class="inline-flex items-center justify-center w-14 h-14 rounded-xl mb-5" style="background: rgba(168, 181, 160, 0.1);">
+              <i data-lucide="award" class="w-7 h-7 text-accent" aria-hidden="true"></i>
+            </div>
+            <h3 class="font-heading font-bold text-xl text-white mb-2">Chứng chỉ sau khóa học</h3>
+            <p class="text-text-muted leading-relaxed">Chứng chỉ trị liệu Spa được công nhận, giúp bạn tự tin xin việc tại các Spa cao cấp và khách sạn.</p>
+          </div>
+
+          <!-- Feature 3 -->
+          <div class="p-6 sm:p-8 rounded-2xl card-hover cursor-default reveal" style="background: #13151A; border: 1px solid #1F2025;" role="article">
+            <div class="inline-flex items-center justify-center w-14 h-14 rounded-xl mb-5" style="background: rgba(168, 181, 160, 0.1);">
+              <i data-lucide="user-check" class="w-7 h-7 text-accent" aria-hidden="true"></i>
+            </div>
+            <h3 class="font-heading font-bold text-xl text-white mb-2">Giảng viên 10+ năm kinh nghiệm</h3>
+            <p class="text-text-muted leading-relaxed">Đội ngũ giảng viên tốt nghiệp chuyên ngành, từng làm việc tại các Spa 5 sao và Resort cao cấp.</p>
+          </div>
+
+          <!-- Feature 4 -->
+          <div class="p-6 sm:p-8 rounded-2xl card-hover cursor-default reveal" style="background: #13151A; border: 1px solid #1F2025;" role="article">
+            <div class="inline-flex items-center justify-center w-14 h-14 rounded-xl mb-5" style="background: rgba(168, 181, 160, 0.1);">
+              <i data-lucide="flower-2" class="w-7 h-7 text-accent" aria-hidden="true"></i>
+            </div>
+            <h3 class="font-heading font-bold text-xl text-white mb-2">Tinh dầu & sản phẩm thực tế</h3>
+            <p class="text-text-muted leading-relaxed">Sử dụng bộ sưu tập tinh dầu thiên nhiên và sản phẩm Spa cao cấp để học viên làm quen thực tế.</p>
+          </div>
+
+          <!-- Feature 5 -->
+          <div class="p-6 sm:p-8 rounded-2xl card-hover cursor-default reveal" style="background: #13151A; border: 1px solid #1F2025;" role="article">
+            <div class="inline-flex items-center justify-center w-14 h-14 rounded-xl mb-5" style="background: rgba(168, 181, 160, 0.1);">
+              <i data-lucide="users" class="w-7 h-7 text-accent" aria-hidden="true"></i>
+            </div>
+            <h3 class="font-heading font-bold text-xl text-white mb-2">Group hỗ trợ sau khóa</h3>
+            <p class="text-text-muted leading-relaxed">Tham gia nhóm Zalo riêng với giảng viên, được tư vấn nghề nghiệp và hỗ trợ kỹ thuật trong 6 tháng.</p>
+          </div>
+
+          <!-- Feature 6 -->
+          <div class="p-6 sm:p-8 rounded-2xl card-hover cursor-default reveal sm:col-span-2 lg:col-span-1" style="background: #13151A; border: 1px solid #1F2025;" role="article">
+            <div class="inline-flex items-center justify-center w-14 h-14 rounded-xl mb-5" style="background: rgba(168, 181, 160, 0.1);">
+              <i data-lucide="briefcase" class="w-7 h-7 text-accent" aria-hidden="true"></i>
+            </div>
+            <h3 class="font-heading font-bold text-xl text-white mb-2">Hỗ trợ giới thiệu việc làm</h3>
+            <p class="text-text-muted leading-relaxed">Đối tác với hệ thống Spa lớn tại Đà Nẵng, học viên xuất sắc được giới thiệu việc làm ngay sau khóa học.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 5. TARGET AUDIENCE ========== -->
+    <section id="audience" class="py-16 lg:py-20 px-4 sm:px-6 lg:px-8" aria-labelledby="audience-heading">
+      <div class="max-w-[1200px] mx-auto">
+        <div class="text-center mb-12 reveal">
+          <h2 id="audience-heading" class="font-heading font-bold text-3xl sm:text-4xl lg:text-[40px] text-white mb-4">
+            Khóa Học Dành Cho Ai?
+          </h2>
+          <p class="text-text-muted text-lg max-w-2xl mx-auto">
+            Phù hợp cho mọi người muốn theo đuổi nghề trị liệu Spa chuyên nghiệp
+          </p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-4 sm:gap-6">
+          <!-- Audience 1 -->
+          <div class="p-6 sm:p-8 rounded-2xl card-hover cursor-default reveal flex gap-5" style="background: #13151A; border: 1px solid #1F2025;" role="article">
+            <div class="flex-shrink-0">
+              <div class="inline-flex items-center justify-center w-14 h-14 rounded-xl" style="background: rgba(168, 181, 160, 0.1);">
+                <i data-lucide="graduation-cap" class="w-7 h-7 text-accent" aria-hidden="true"></i>
+              </div>
+            </div>
+            <div>
+              <h3 class="font-heading font-bold text-xl text-white mb-1">Sinh viên & người mới tốt nghiệp</h3>
+              <p class="text-text-muted text-sm mb-3">Muốn có nghề ổn định, thu nhập tốt</p>
+              <p class="text-text-muted text-sm leading-relaxed">Trang bị kỹ năng thực tế để sẵn sàng gia nhập thị trường lao động ngành Spa ngay sau khi tốt nghiệp.</p>
+            </div>
+          </div>
+
+          <!-- Audience 2 -->
+          <div class="p-6 sm:p-8 rounded-2xl card-hover cursor-default reveal flex gap-5" style="background: #13151A; border: 1px solid #1F2025;" role="article">
+            <div class="flex-shrink-0">
+              <div class="inline-flex items-center justify-center w-14 h-14 rounded-xl" style="background: rgba(168, 181, 160, 0.1);">
+                <i data-lucide="refresh-cw" class="w-7 h-7 text-accent" aria-hidden="true"></i>
+              </div>
+            </div>
+            <div>
+              <h3 class="font-heading font-bold text-xl text-white mb-1">Người muốn chuyển nghề</h3>
+              <p class="text-text-muted text-sm mb-3">Đang làm nghề khác, muốn chuyển hướng</p>
+              <p class="text-text-muted text-sm leading-relaxed">Thị trường Spa phát triển mạnh, nhu cầu nhân lực cao. Lộ trình chuyển nghề rõ ràng với chứng chỉ hợp lệ.</p>
+            </div>
+          </div>
+
+          <!-- Audience 3 -->
+          <div class="p-6 sm:p-8 rounded-2xl card-hover cursor-default reveal flex gap-5" style="background: #13151A; border: 1px solid #1F2025;" role="article">
+            <div class="flex-shrink-0">
+              <div class="inline-flex items-center justify-center w-14 h-14 rounded-xl" style="background: rgba(168, 181, 160, 0.1);">
+                <i data-lucide="heart" class="w-7 h-7 text-accent" aria-hidden="true"></i>
+              </div>
+            </div>
+            <div>
+              <h3 class="font-heading font-bold text-xl text-white mb-1">Muốn chăm sóc sức khỏe gia đình</h3>
+              <p class="text-text-muted text-sm mb-3">Học để phục vụ bản thân và người thân</p>
+              <p class="text-text-muted text-sm leading-relaxed">Kỹ năng massage, trị liệu giúp bạn chăm sóc sức khỏe cho bố mẹ, vợ/chồng và con cái một cách khoa học.</p>
+            </div>
+          </div>
+
+          <!-- Audience 4 -->
+          <div class="p-6 sm:p-8 rounded-2xl card-hover cursor-default reveal flex gap-5" style="background: #13151A; border: 1px solid #1F2025;" role="article">
+            <div class="flex-shrink-0">
+              <div class="inline-flex items-center justify-center w-14 h-14 rounded-xl" style="background: rgba(168, 181, 160, 0.1);">
+                <i data-lucide="sparkles" class="w-7 h-7 text-accent" aria-hidden="true"></i>
+              </div>
+            </div>
+            <div>
+              <h3 class="font-heading font-bold text-xl text-white mb-1">Muốn mở Spa riêng</h3>
+              <p class="text-text-muted text-sm mb-3">Dự định khởi nghiệp kinh doanh Spa</p>
+              <p class="text-text-muted text-sm leading-relaxed">Nắm vững kỹ thuật trị liệu từ cơ bản đến nâng cao, hiểu quy trình vận hành để tự tin mở Spa của mình.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 6. COURSE CONTENT (Timeline) ========== -->
+    <section id="roadmap" class="py-16 lg:py-20 px-4 sm:px-6 lg:px-8" aria-labelledby="roadmap-heading">
+      <div class="max-w-[1200px] mx-auto">
+        <div class="text-center mb-12 reveal">
+          <h2 id="roadmap-heading" class="font-heading font-bold text-3xl sm:text-4xl lg:text-[40px] text-white mb-4">
+            Chương Trình 12 Buổi
+          </h2>
+          <p class="text-text-muted text-lg max-w-2xl mx-auto">
+            24 tiết học thực hành toàn diện, từ massage body đến chăm sóc da mặt
+          </p>
+        </div>
+
+        <!-- Timeline -->
+        <div class="relative max-w-3xl mx-auto">
+          <!-- Session 1-2 -->
+          <div class="relative flex gap-6 mb-8 reveal" role="article" aria-label="Buổi 1-2">
+            <div class="flex-shrink-0 relative z-10">
+              <div class="w-12 h-12 rounded-full flex items-center justify-center font-heading font-bold text-white text-sm" style="background: #575C55; box-shadow: 0 0 20px rgba(87, 92, 85, 0.4);">1-2</div>
+              <div class="w-0.5 h-full absolute left-1/2 -translate-x-1/2 top-12" style="background: linear-gradient(to bottom, #575C55, #1F2025);" aria-hidden="true"></div>
+            </div>
+            <div class="flex-1 pb-2 card-hover rounded-2xl" style="background: #13151A; border: 1px solid #1F2025; padding: 20px 24px;">
+              <div class="flex flex-wrap items-center gap-3 mb-3">
+                <h3 class="font-heading font-bold text-lg text-white">Nền tảng Trị liệu & Giải phẫu cơ bản</h3>
+                <span class="px-2 py-0.5 text-xs font-bold rounded-full text-accent" style="background: rgba(168, 181, 160, 0.1); border: 1px solid rgba(168, 181, 160, 0.2);">4 tiết</span>
+              </div>
+              <p class="text-text-muted text-sm leading-relaxed">Tổng quan ngành Spa, các loại hình trị liệu, cấu trúc cơ bản cơ thể người, áp lực tay và tư thế đúng khi massage.</p>
+            </div>
+          </div>
+
+          <!-- Session 3-4 -->
+          <div class="relative flex gap-6 mb-8 reveal" role="article" aria-label="Buổi 3-4">
+            <div class="flex-shrink-0 relative z-10">
+              <div class="w-12 h-12 rounded-full flex items-center justify-center font-heading font-bold text-white text-sm" style="background: #575C55; box-shadow: 0 0 20px rgba(87, 92, 85, 0.4);">3-4</div>
+              <div class="w-0.5 h-full absolute left-1/2 -translate-x-1/2 top-12" style="background: linear-gradient(to bottom, #575C55, #1F2025);" aria-hidden="true"></div>
+            </div>
+            <div class="flex-1 pb-2 card-hover rounded-2xl" style="background: #13151A; border: 1px solid #1F2025; padding: 20px 24px;">
+              <div class="flex flex-wrap items-center gap-3 mb-3">
+                <h3 class="font-heading font-bold text-lg text-white">Massage Body — Swedish Massage</h3>
+                <span class="px-2 py-0.5 text-xs font-bold rounded-full text-accent" style="background: rgba(168, 181, 160, 0.1); border: 1px solid rgba(168, 181, 160, 0.2);">4 tiết</span>
+              </div>
+              <p class="text-text-muted text-sm leading-relaxed">Kỹ thuật massage Thụy Điển: vuốt, xoa, bóp, vỗ, rung. Các đường bấm huyệt trên cơ thể, phòng tránh chấn thương.</p>
+            </div>
+          </div>
+
+          <!-- Session 5-6 -->
+          <div class="relative flex gap-6 mb-8 reveal" role="article" aria-label="Buổi 5-6">
+            <div class="flex-shrink-0 relative z-10">
+              <div class="w-12 h-12 rounded-full flex items-center justify-center font-heading font-bold text-white text-sm" style="background: #575C55; box-shadow: 0 0 20px rgba(87, 92, 85, 0.4);">5-6</div>
+              <div class="w-0.5 h-full absolute left-1/2 -translate-x-1/2 top-12" style="background: linear-gradient(to bottom, #575C55, #1F2025);" aria-hidden="true"></div>
+            </div>
+            <div class="flex-1 pb-2 card-hover rounded-2xl" style="background: #13151A; border: 1px solid #1F2025; padding: 20px 24px;">
+              <div class="flex flex-wrap items-center gap-3 mb-3">
+                <h3 class="font-heading font-bold text-lg text-white">Massage Back & Shoulder</h3>
+                <span class="px-2 py-0.5 text-xs font-bold rounded-full text-accent" style="background: rgba(168, 181, 160, 0.1); border: 1px solid rgba(168, 181, 160, 0.2);">4 tiết</span>
+              </div>
+              <p class="text-text-muted text-sm leading-relaxed">Kỹ thuật massage chuyên sâu vùng lưng và vai gáy — nơi tích tụ stress lớn nhất. Sử dụng tinh dầu thiên nhiên.</p>
+            </div>
+          </div>
+
+          <!-- Session 7-8 -->
+          <div class="relative flex gap-6 mb-8 reveal" role="article" aria-label="Buổi 7-8">
+            <div class="flex-shrink-0 relative z-10">
+              <div class="w-12 h-12 rounded-full flex items-center justify-center font-heading font-bold text-white text-sm" style="background: #575C55; box-shadow: 0 0 20px rgba(87, 92, 85, 0.4);">7-8</div>
+              <div class="w-0.5 h-full absolute left-1/2 -translate-x-1/2 top-12" style="background: linear-gradient(to bottom, #575C55, #1F2025);" aria-hidden="true"></div>
+            </div>
+            <div class="flex-1 pb-2 card-hover rounded-2xl" style="background: #13151A; border: 1px solid #1F2025; padding: 20px 24px;">
+              <div class="flex flex-wrap items-center gap-3 mb-3">
+                <h3 class="font-heading font-bold text-lg text-white">Chăm sóc da mặt cơ bản</h3>
+                <span class="px-2 py-0.5 text-xs font-bold rounded-full text-accent" style="background: rgba(168, 181, 160, 0.1); border: 1px solid rgba(168, 181, 160, 0.2);">4 tiết</span>
+              </div>
+              <p class="text-text-muted text-sm leading-relaxed">Các bước skincare chuẩn: tẩy trang, rửa mặt, tẩy tế bào chết, xông hơi, đắp mặt nạ. Nhận diện loại da và chọn sản phẩm phù hợp.</p>
+            </div>
+          </div>
+
+          <!-- Session 9-10 -->
+          <div class="relative flex gap-6 mb-8 reveal" role="article" aria-label="Buổi 9-10">
+            <div class="flex-shrink-0 relative z-10">
+              <div class="w-12 h-12 rounded-full flex items-center justify-center font-heading font-bold text-white text-sm" style="background: #575C55; box-shadow: 0 0 20px rgba(87, 92, 85, 0.4);">9-10</div>
+              <div class="w-0.5 h-full absolute left-1/2 -translate-x-1/2 top-12" style="background: linear-gradient(to bottom, #575C55, #1F2025);" aria-hidden="true"></div>
+            </div>
+            <div class="flex-1 pb-2 card-hover rounded-2xl" style="background: #13151A; border: 1px solid #1F2025; padding: 20px 24px;">
+              <div class="flex flex-wrap items-center gap-3 mb-3">
+                <h3 class="font-heading font-bold text-lg text-white">Massage đá nóng & Thư giãn</h3>
+                <span class="px-2 py-0.5 text-xs font-bold rounded-full text-accent" style="background: rgba(168, 181, 160, 0.1); border: 1px solid rgba(168, 181, 160, 0.2);">4 tiết</span>
+              </div>
+              <p class="text-text-muted text-sm leading-relaxed">Sử dụng đá nóng basalt, kỹ thuật massage thư giãn toàn thân, aromatherapy với tinh dầu. Quy trình chuẩn 90 phút.</p>
+            </div>
+          </div>
+
+          <!-- Session 11-12 -->
+          <div class="relative flex gap-6 reveal" role="article" aria-label="Buổi 11-12">
+            <div class="flex-shrink-0 relative z-10">
+              <div class="w-12 h-12 rounded-full flex items-center justify-center font-heading font-bold text-white text-sm" style="background: #575C55; box-shadow: 0 0 20px rgba(87, 92, 85, 0.4);">11-12</div>
+            </div>
+            <div class="flex-1 pb-2 card-hover rounded-2xl" style="background: #13151A; border: 1px solid #1F2025; padding: 20px 24px;">
+              <div class="flex flex-wrap items-center gap-3 mb-3">
+                <h3 class="font-heading font-bold text-lg text-white">Thực hành tổng hợp & Kiểm tra</h3>
+                <span class="px-2 py-0.5 text-xs font-bold rounded-full text-accent" style="background: rgba(168, 181, 160, 0.1); border: 1px solid rgba(168, 181, 160, 0.2);">4 tiết</span>
+              </div>
+              <p class="text-text-muted text-sm leading-relaxed">Thực hành toàn diện quy trình Spa 90 phút, kiểm tra kỹ thuật và cấp chứng chỉ hoàn thành khóa học.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 7. SOCIAL PROOF ========== -->
+    <section id="students" class="py-16 lg:py-20 px-4 sm:px-6 lg:px-8" aria-labelledby="proof-heading">
+      <div class="max-w-[1200px] mx-auto">
+        <div class="text-center mb-12 reveal">
+          <h2 id="proof-heading" class="font-heading font-bold text-3xl sm:text-4xl lg:text-[40px] text-white mb-4">
+            Thành Tựu Học Viên
+          </h2>
+          <p class="text-text-muted text-lg max-w-2xl mx-auto">
+            Những con số nói lên chất lượng khóa học
+          </p>
+        </div>
+
+        <!-- Highlight Card -->
+        <div class="rounded-3xl p-8 sm:p-12 mb-10 reveal glow-box-accent" style="background: linear-gradient(145deg, #13151A, #1a1c22); border: 1px solid #1F2025;" role="article" aria-label="Sản phẩm học viên spa">
+          <div class="flex flex-col lg:flex-row gap-8 items-start">
+            <div class="flex-shrink-0">
+              <div class="w-20 h-20 rounded-2xl flex items-center justify-center" style="background: rgba(168, 181, 160, 0.1); border: 1px solid rgba(168, 181, 160, 0.2);">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#A8B5A0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 2a10 10 0 0 1 10 10c0 5.52-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2z"/>
+                  <path d="M12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6z"/>
+                  <circle cx="12" cy="12" r="2"/>
+                </svg>
+              </div>
+            </div>
+            <div class="flex-1 space-y-4">
+              <div class="flex flex-wrap items-center gap-3">
+                <h3 class="font-heading font-bold text-2xl text-white">Kỹ năng thực hành Spa toàn diện</h3>
+              </div>
+              <p class="text-text-muted leading-relaxed text-lg max-w-3xl">
+                Học viên hoàn thành khóa học có thể thực hiện trọn vẹn quy trình massage body 90 phút, chăm sóc da mặt chuẩn Spa cao cấp. Được đánh giá kỹ thuật trực tiếp bởi giảng viên.
+              </p>
+              <div class="flex flex-wrap gap-2 pt-2" role="list" aria-label="Kỹ năng đạt được">
+                <span class="px-3 py-1 text-xs font-semibold rounded-full" style="background: rgba(168, 181, 160, 0.08); border: 1px solid rgba(168, 181, 160, 0.2); color: #A8B5A0;" role="listitem">Swedish Massage</span>
+                <span class="px-3 py-1 text-xs font-semibold rounded-full" style="background: rgba(168, 181, 160, 0.08); border: 1px solid rgba(168, 181, 160, 0.2); color: #A8B5A0;" role="listitem">Hot Stone</span>
+                <span class="px-3 py-1 text-xs font-semibold rounded-full" style="background: rgba(168, 181, 160, 0.08); border: 1px solid rgba(168, 181, 160, 0.2); color: #A8B5A0;" role="listitem">Facial Care</span>
+                <span class="px-3 py-1 text-xs font-semibold rounded-full" style="background: rgba(168, 181, 160, 0.08); border: 1px solid rgba(168, 181, 160, 0.2); color: #A8B5A0;" role="listitem">Aromatherapy</span>
+                <span class="px-3 py-1 text-xs font-semibold rounded-full" style="background: rgba(168, 181, 160, 0.08); border: 1px solid rgba(168, 181, 160, 0.2); color: #A8B5A0;" role="listitem">Chứng chỉ</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quote -->
+        <blockquote class="text-center mb-10 reveal" cite="https://softech.vn">
+          <p class="font-heading text-xl sm:text-2xl lg:text-3xl text-white/90 italic leading-relaxed max-w-3xl mx-auto mb-4">
+            "Sức khỏe là thứ quý giá nhất. Trị liệu Spa không chỉ là nghề — đó là cách bạn trao đi sự thư giãn và chữa lành cho người khác."
+          </p>
+          <cite class="text-text-muted text-sm not-italic">— Softech Aptech Đà Nẵng</cite>
+        </blockquote>
+
+        <!-- Stats -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 reveal" role="list" aria-label="Thống kê thành công">
+          <div class="text-center p-6 rounded-2xl card-hover" style="background: #13151A; border: 1px solid #1F2025;" role="listitem">
+            <p class="font-heading font-extrabold text-3xl sm:text-4xl gradient-text">200+</p>
+            <p class="text-text-muted text-sm mt-2 font-medium">Học viên đã tốt nghiệp</p>
+          </div>
+          <div class="text-center p-6 rounded-2xl card-hover" style="background: #13151A; border: 1px solid #1F2025;" role="listitem">
+            <p class="font-heading font-extrabold text-3xl sm:text-4xl gradient-text">95%</p>
+            <p class="text-text-muted text-sm mt-2 font-medium">Có việc làm sau 3 tháng</p>
+          </div>
+          <div class="text-center p-6 rounded-2xl card-hover" style="background: #13151A; border: 1px solid #1F2025;" role="listitem">
+            <p class="font-heading font-extrabold text-3xl sm:text-4xl gradient-text">12</p>
+            <p class="text-text-muted text-sm mt-2 font-medium">Đối tác Spa & Resort</p>
+          </div>
+          <div class="text-center p-6 rounded-2xl card-hover" style="background: #13151A; border: 1px solid #1F2025;" role="listitem">
+            <p class="font-heading font-extrabold text-3xl sm:text-4xl gradient-text">4.8</p>
+            <p class="text-text-muted text-sm mt-2 font-medium">Điểm đánh giá khóa học</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 8. CTA SECTION ========== -->
+    <section id="register" class="py-16 lg:py-20 px-4 sm:px-6 lg:px-8" aria-labelledby="register-heading">
+      <div class="max-w-[1200px] mx-auto">
+        <div class="max-w-lg mx-auto text-center">
+          <div class="reveal">
+            <h2 id="register-heading" class="font-heading font-bold text-3xl sm:text-4xl lg:text-[40px] text-white mb-4">
+              Sẵn Sàng Bắt Đầu Chưa?
+            </h2>
+            <p class="text-text-muted text-lg mb-10">
+              Để lại thông tin, đội ngũ tư vấn sẽ liên hệ trong 24h
+            </p>
+          </div>
+
+          <!-- Registration Form -->
+          <form id="register-form" class="space-y-4 mb-8 text-left reveal" novalidate aria-label="Form đăng ký khóa học">
+            <div>
+              <label for="fullname" class="block text-sm font-medium text-text-muted mb-2">Họ và tên <span class="text-accent" aria-label="bắt buộc">*</span></label>
+              <input
+                type="text"
+                id="fullname"
+                name="fullname"
+                required
+                placeholder="Nguyễn Thị Lan"
+                class="w-full px-4 py-3.5 rounded-xl text-white placeholder-text-muted/50 outline-none transition-all duration-200"
+                style="background: #13151A; border: 1px solid #1F2025;"
+                aria-required="true"
+                aria-describedby="fullname-error"
+              >
+              <p id="fullname-error" class="text-red-400 text-sm mt-1 hidden" role="alert"></p>
+            </div>
+
+            <div>
+              <label for="email" class="block text-sm font-medium text-text-muted mb-2">Email <span class="text-accent" aria-label="bắt buộc">*</span></label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                placeholder="email@example.com"
+                class="w-full px-4 py-3.5 rounded-xl text-white placeholder-text-muted/50 outline-none transition-all duration-200"
+                style="background: #13151A; border: 1px solid #1F2025;"
+                aria-required="true"
+                aria-describedby="email-error"
+              >
+              <p id="email-error" class="text-red-400 text-sm mt-1 hidden" role="alert"></p>
+            </div>
+
+            <div>
+              <label for="phone" class="block text-sm font-medium text-text-muted mb-2">Số điện thoại <span class="text-text-muted/50">(tùy chọn)</span></label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                placeholder="0912 345 678"
+                class="w-full px-4 py-3.5 rounded-xl text-white placeholder-text-muted/50 outline-none transition-all duration-200"
+                style="background: #13151A; border: 1px solid #1F2025;"
+              >
+            </div>
+
+            <div>
+              <label for="topic" class="block text-sm font-medium text-text-muted mb-2">Nội dung cần tư vấn <span class="text-accent" aria-label="bắt buộc">*</span></label>
+              <select
+                id="topic"
+                name="topic"
+                required
+                class="w-full px-4 py-3.5 rounded-xl text-white outline-none transition-all duration-200 appearance-none cursor-pointer"
+                style="background: #13151A; border: 1px solid #1F2025;"
+                aria-required="true"
+                aria-describedby="topic-error"
+              >
+                <option value="" disabled selected>-- Chọn nội dung bạn quan tâm --</option>
+                <option value="massage-body">Massage Body</option>
+                <option value="cham-soc-da">Chăm sóc da mặt</option>
+                <option value="spa-day-du">Trị liệu Spa toàn diện</option>
+                <option value="aromatherapy">Aromatherapy & Tinh dầu</option>
+                <option value="mo-spa">Mở Spa riêng</option>
+                <option value="chung-chi">Chứng chỉ & Nghề nghiệp</option>
+                <option value="other">Khác</option>
+              </select>
+              <p id="topic-error" class="text-red-400 text-sm mt-1 hidden" role="alert"></p>
+            </div>
+
+            <div>
+              <label for="industry" class="block text-sm font-medium text-text-muted mb-2">Mục tiêu nghề nghiệp <span class="text-text-muted/50">(tùy chọn)</span></label>
+              <input
+                type="text"
+                id="industry"
+                name="industry"
+                placeholder="VD: Làm nhân viên Spa, Mở Spa riêng, Chăm sóc sức khỏe gia đình..."
+                class="w-full px-4 py-3.5 rounded-xl text-white placeholder-text-muted/50 outline-none transition-all duration-200"
+                style="background: #13151A; border: 1px solid #1F2025;"
+              >
+            </div>
+
+            <button
+              type="submit"
+              class="w-full bg-primary hover:bg-primary-hover text-white font-bold text-lg py-4 rounded-xl btn-primary flex items-center justify-center gap-2 mt-2"
+              aria-label="Đăng ký khóa Trị liệu Spa ngay"
+            >
+              Đăng Ký Ngay
+              <i data-lucide="arrow-right" class="w-5 h-5" aria-hidden="true"></i>
+            </button>
+          </form>
+
+          <!-- Success Message -->
+          <div id="success-message" class="hidden p-6 rounded-2xl text-center" style="background: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94, 0.3);" role="status" aria-live="polite">
+            <div class="inline-flex items-center justify-center w-16 h-16 rounded-full mb-4" style="background: rgba(34, 197, 94, 0.15);">
+              <i data-lucide="check-circle" class="w-8 h-8 text-green-400" aria-hidden="true"></i>
+            </div>
+            <h3 class="font-heading font-bold text-xl text-white mb-2">Đăng ký thành công!</h3>
+            <p class="text-text-muted">Đội ngũ tư vấn sẽ liên hệ bạn trong 24 giờ. Chúc bạn sớm trở thành chuyên viên Spa chuyên nghiệp!</p>
+          </div>
+
+          <!-- Divider -->
+          <div class="flex items-center gap-4 mb-8" aria-hidden="true">
+            <div class="flex-1 h-px" style="background: #1F2025;"></div>
+            <span class="text-text-muted text-sm">hoặc</span>
+            <div class="flex-1 h-px" style="background: #1F2025;"></div>
+          </div>
+
+          <!-- Contact Button -->
+          <a href="tel:02363779779" class="inline-flex items-center justify-center gap-2 border text-text-muted hover:border-primary hover:text-accent px-8 py-4 rounded-xl btn-secondary text-lg w-full mb-6" aria-label="Liên hệ hỗ trợ qua điện thoại">
+            <i data-lucide="phone" class="w-5 h-5" aria-hidden="true"></i>
+            Liên Hệ Hỗ Trợ
+          </a>
+
+          <!-- Hotline -->
+          <div class="reveal">
+            <p class="text-text-muted text-sm mb-2">Hotline tư vấn</p>
+            <a href="tel:02363779779" class="font-heading font-extrabold text-2xl gradient-text hover:opacity-80 transition-opacity" aria-label="Gọi hotline 0236.3.779.779">
+              0236.3.779.779
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 9. FAQ SECTION ========== -->
+    <section id="faq" class="py-16 lg:py-20 px-4 sm:px-6 lg:px-8" aria-labelledby="faq-heading">
+      <div class="max-w-[1200px] mx-auto">
+        <div class="text-center mb-12 reveal">
+          <h2 id="faq-heading" class="font-heading font-bold text-3xl sm:text-4xl lg:text-[40px] text-white mb-4">
+            Câu Hỏi Thường Gặp
+          </h2>
+        </div>
+
+        <div class="max-w-3xl mx-auto space-y-3 reveal">
+          <!-- FAQ 1 -->
+          <details class="rounded-2xl overflow-hidden" style="background: #13151A; border: 1px solid #1F2025;">
+            <summary class="flex items-center justify-between gap-4 p-6 cursor-pointer list-none select-none">
+              <span class="font-heading font-semibold text-lg text-white pr-4">Tôi chưa có kinh nghiệm, có học được không?</span>
+              <i data-lucide="chevron-down" class="w-5 h-5 text-text-muted flex-shrink-0 faq-chevron" aria-hidden="true"></i>
+            </summary>
+            <div class="faq-content px-6 pb-6">
+              <p class="text-text-muted leading-relaxed">Hoàn toàn được! Khóa học thiết kế từ cơ bản, phù hợp người mới bắt đầu hoàn toàn. Giảng viên hướng dẫn từng động tác, tư thế đúng cách. Bạn chỉ cần đam mê và sẵn sàng học hỏi.</p>
+            </div>
+          </details>
+
+          <!-- FAQ 2 -->
+          <details class="rounded-2xl overflow-hidden" style="background: #13151A; border: 1px solid #1F2025;">
+            <summary class="flex items-center justify-between gap-4 p-6 cursor-pointer list-none select-none">
+              <span class="font-heading font-semibold text-lg text-white pr-4">Khóa học kéo dài bao lâu?</span>
+              <i data-lucide="chevron-down" class="w-5 h-5 text-text-muted flex-shrink-0 faq-chevron" aria-hidden="true"></i>
+            </summary>
+            <div class="faq-content px-6 pb-6">
+              <p class="text-text-muted leading-relaxed">Khóa học kéo dài 6 tuần với 12 buổi (24 tiết). Mỗi tuần học 2 buổi, mỗi buổi 2 tiết (2 tiếng). Lịch học linh hoạt, có lớp sáng và lớp tối.</p>
+            </div>
+          </details>
+
+          <!-- FAQ 3 -->
+          <details class="rounded-2xl overflow-hidden" style="background: #13151A; border: 1px solid #1F2025;">
+            <summary class="flex items-center justify-between gap-4 p-6 cursor-pointer list-none select-none">
+              <span class="font-heading font-semibold text-lg text-white pr-4">Chứng chỉ có giá trị không?</span>
+              <i data-lucide="chevron-down" class="w-5 h-5 text-text-muted flex-shrink-0 faq-chevron" aria-hidden="true"></i>
+            </summary>
+            <div class="faq-content px-6 pb-6">
+              <p class="text-text-muted leading-relaxed">Chứng chỉ hoàn thành khóa học Trị liệu Spa được cấp bởi Softech Aptech — trung tâm đào tạo uy tín tại Đà Nẵng. Chứng chỉ này được nhiều Spa và Resort ở miền Trung công nhận khi tuyển dụng.</p>
+            </div>
+          </details>
+
+          <!-- FAQ 4 -->
+          <details class="rounded-2xl overflow-hidden" style="background: #13151A; border: 1px solid #1F2025;">
+            <summary class="flex items-center justify-between gap-4 p-6 cursor-pointer list-none select-none">
+              <span class="font-heading font-semibold text-lg text-white pr-4">Học phí bao gồm những gì?</span>
+              <i data-lucide="chevron-down" class="w-5 h-5 text-text-muted flex-shrink-0 faq-chevron" aria-hidden="true"></i>
+            </summary>
+            <div class="faq-content px-6 pb-6">
+              <p class="text-text-muted leading-relaxed">Học phí 2.500.000đ đã bao gồm: tài liệu học tập, sử dụng tinh dầu và sản phẩm Spa trong thực hành tại lớp, video buổi học (nếu có), và chứng chỉ sau khóa. Không phát sinh chi phí.</p>
+            </div>
+          </details>
+
+          <!-- FAQ 5 -->
+          <details class="rounded-2xl overflow-hidden" style="background: #13151A; border: 1px solid #1F2025;">
+            <summary class="flex items-center justify-between gap-4 p-6 cursor-pointer list-none select-none">
+              <span class="font-heading font-semibold text-lg text-white pr-4">Sau khóa học có hỗ trợ việc làm không?</span>
+              <i data-lucide="chevron-down" class="w-5 h-5 text-text-muted flex-shrink-0 faq-chevron" aria-hidden="true"></i>
+            </summary>
+            <div class="faq-content px-6 pb-6">
+              <p class="text-text-muted leading-relaxed">Có! Softech Aptech có mạng lưới đối tác với 12 Spa và Resort tại Đà Nẵng và lân cận. Học viên xuất sắc sẽ được giới thiệu việc làm. Đồng thời, bạn được tham gia nhóm Zalo hỗ trợ nghề nghiệp trong 6 tháng.</p>
+            </div>
+          </details>
+
+          <!-- FAQ 6 -->
+          <details class="rounded-2xl overflow-hidden" style="background: #13151A; border: 1px solid #1F2025;">
+            <summary class="flex items-center justify-between gap-4 p-6 cursor-pointer list-none select-none">
+              <span class="font-heading font-semibold text-lg text-white pr-4">Nếu tôi không thể tham gia buổi học?</span>
+              <i data-lucide="chevron-down" class="w-5 h-5 text-text-muted flex-shrink-0 faq-chevron" aria-hidden="true"></i>
+            </summary>
+            <div class="faq-content px-6 pb-6">
+              <p class="text-text-muted leading-relaxed">Nếu bạn vắng một buổi, giảng viên sẽ sắp xếp buổi bù riêng hoặc hướng dẫn bạn tự học lại qua tài liệu. Tối đa cho phép nghỉ 2 buổi có bù. Điều này đảm bảo bạn không bỏ lỡ kiến thức quan trọng.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========== 10. FOOTER ========== -->
+  <footer class="py-16 px-4 sm:px-6 lg:px-8" style="background: #060709;" role="contentinfo">
+    <div class="max-w-[1200px] mx-auto">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+        <!-- Brand Column -->
+        <div class="space-y-4">
+          <a href="#" class="font-heading font-extrabold text-2xl gradient-text" aria-label="Spa Therapy - Trang chủ">
+            Spa Therapy
+          </a>
+          <p class="text-text-muted text-sm leading-relaxed">
+            Khóa học Trị liệu Spa chuyên nghiệp tại Softech Aptech Đà Nẵng. Đào tạo kỹ năng massage, chăm sóc da và trị liệu thư giãn.
+          </p>
+        </div>
+
+        <!-- Contact Column -->
+        <div class="space-y-3">
+          <h3 class="font-heading font-bold text-white text-sm uppercase tracking-wider" style="color: #8A8E98;">Liên hệ</h3>
+          <address class="not-italic space-y-3 text-sm">
+            <p class="flex items-start gap-2 text-text-muted">
+              <i data-lucide="map-pin" class="w-4 h-4 mt-0.5 flex-shrink-0 text-accent" aria-hidden="true"></i>
+              24 Lê Thánh Tôn, Đà Nẵng
+            </p>
+            <a href="tel:02363779779" class="flex items-center gap-2 text-text-muted hover:text-accent transition-colors">
+              <i data-lucide="phone" class="w-4 h-4 flex-shrink-0 text-accent" aria-hidden="true"></i>
+              0236.3.779.779
+            </a>
+            <a href="mailto:info@softech.vn" class="flex items-center gap-2 text-text-muted hover:text-accent transition-colors">
+              <i data-lucide="mail" class="w-4 h-4 flex-shrink-0 text-accent" aria-hidden="true"></i>
+              info@softech.vn
+            </a>
+          </address>
+        </div>
+
+        <!-- Social Column -->
+        <div class="space-y-3">
+          <h3 class="font-heading font-bold text-sm uppercase tracking-wider" style="color: #8A8E98;">Theo dõi</h3>
+          <div class="flex gap-3">
+            <a href="#" class="w-10 h-10 rounded-xl flex items-center justify-center transition-colors hover:text-accent" style="background: #13151A; border: 1px solid #1F2025;" aria-label="Facebook Softech Aptech">
+              <i data-lucide="facebook" class="w-5 h-5 text-text-muted" aria-hidden="true"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-xl flex items-center justify-center transition-colors hover:text-accent" style="background: #13151A; border: 1px solid #1F2025;" aria-label="Zalo Softech Aptech">
+              <i data-lucide="message-circle" class="w-5 h-5 text-text-muted" aria-hidden="true"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-xl flex items-center justify-center transition-colors hover:text-accent" style="background: #13151A; border: 1px solid #1F2025;" aria-label="LinkedIn Softech Aptech">
+              <i data-lucide="linkedin" class="w-5 h-5 text-text-muted" aria-hidden="true"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-xl flex items-center justify-center transition-colors hover:text-accent" style="background: #13151A; border: 1px solid #1F2025;" aria-label="YouTube Softech Aptech">
+              <i data-lucide="youtube" class="w-5 h-5 text-text-muted" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Newsletter Column -->
+        <div class="space-y-3">
+          <h3 class="font-heading font-bold text-sm uppercase tracking-wider" style="color: #8A8E98;">Nhận tin tức Spa & Wellness</h3>
+          <form id="newsletter-form" class="flex gap-2" novalidate aria-label="Form đăng ký newsletter">
+            <label for="newsletter-email" class="sr-only">Email nhận tin</label>
+            <input
+              type="email"
+              id="newsletter-email"
+              name="newsletter-email"
+              placeholder="email@example.com"
+              required
+              class="flex-1 px-4 py-2.5 rounded-xl text-white placeholder-text-muted/50 text-sm outline-none min-w-0"
+              style="background: #13151A; border: 1px solid #1F2025;"
+              aria-label="Email đăng ký nhận tin"
+            >
+            <button type="submit" class="px-4 py-2.5 bg-primary hover:bg-primary-hover text-white text-sm font-semibold rounded-xl btn-primary whitespace-nowrap transition-colors" aria-label="Đăng ký nhận tin">
+              Đăng ký
+            </button>
+          </form>
+          <p id="newsletter-success" class="text-green-400 text-sm hidden" role="status" aria-live="polite">Đăng ký thành công!</p>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div class="h-px mb-8" style="background: #1F2025;"></div>
+
+      <!-- Copyright -->
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-text-muted text-sm">
+        <p>© 2026 Softech Aptech Đà Nẵng. All rights reserved.</p>
+        <div class="flex gap-6">
+          <a href="#" class="hover:text-white transition-colors">Chính sách bảo mật</a>
+          <a href="#" class="hover:text-white transition-colors">Điều khoản sử dụng</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== JAVASCRIPT ========== -->
+  <script>
+    lucide.createIcons();
+
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcon = document.getElementById('menu-icon');
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', isOpen);
+      menuIcon.setAttribute('data-lucide', isOpen ? 'x' : 'menu');
+      lucide.createIcons();
+    });
+
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuIcon.setAttribute('data-lucide', 'menu');
+        lucide.createIcons();
+      });
+    });
+
+    // Navbar background on scroll
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 50) {
+        navbar.classList.add('nav-scrolled');
+      } else {
+        navbar.classList.remove('nav-scrolled');
+      }
+    }, { passive: true });
+
+    // Scroll reveal
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // Registration form validation
+    const registerForm = document.getElementById('register-form');
+    const successMessage = document.getElementById('success-message');
+
+    function showError(fieldId, message) {
+      const field = document.getElementById(fieldId);
+      const errorEl = document.getElementById(fieldId + '-error');
+      if (field && errorEl) {
+        field.style.borderColor = '#EF4444';
+        errorEl.textContent = message;
+        errorEl.classList.remove('hidden');
+      }
+    }
+
+    function clearError(fieldId) {
+      const field = document.getElementById(fieldId);
+      const errorEl = document.getElementById(fieldId + '-error');
+      if (field) field.style.borderColor = '#1F2025';
+      if (errorEl) errorEl.classList.add('hidden');
+    }
+
+    function validateEmail(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    registerForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      let isValid = true;
+
+      clearError('fullname');
+      clearError('email');
+      clearError('topic');
+
+      const fullname = document.getElementById('fullname').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const topic = document.getElementById('topic').value;
+
+      if (!fullname) {
+        showError('fullname', 'Vui lòng nhập họ và tên');
+        isValid = false;
+      }
+
+      if (!email) {
+        showError('email', 'Vui lòng nhập email');
+        isValid = false;
+      } else if (!validateEmail(email)) {
+        showError('email', 'Email không hợp lệ');
+        isValid = false;
+      }
+
+      if (!topic) {
+        showError('topic', 'Vui lòng chọn nội dung cần tư vấn');
+        isValid = false;
+      }
+
+      if (isValid) {
+        registerForm.classList.add('hidden');
+        successMessage.classList.remove('hidden');
+        lucide.createIcons();
+      }
+    });
+
+    ['fullname', 'email', 'topic'].forEach(id => {
+      const field = document.getElementById(id);
+      if (field) {
+        field.addEventListener(id === 'topic' ? 'change' : 'input', () => clearError(id));
+      }
+    });
+
+    // Newsletter form
+    const newsletterForm = document.getElementById('newsletter-form');
+    const newsletterSuccess = document.getElementById('newsletter-success');
+
+    newsletterForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = document.getElementById('newsletter-email').value.trim();
+      if (validateEmail(email)) {
+        newsletterSuccess.classList.remove('hidden');
+        newsletterForm.reset();
+        setTimeout(() => newsletterSuccess.classList.add('hidden'), 4000);
+      } else {
+        const input = document.getElementById('newsletter-email');
+        input.style.borderColor = '#EF4444';
+        setTimeout(() => input.style.borderColor = '#1F2025', 2000);
+      }
+    });
+
+    // FAQ re-init icons
+    document.querySelectorAll('details').forEach(detail => {
+      detail.addEventListener('toggle', () => {
+        lucide.createIcons();
+      });
+    });
+  </script>
+</body>
+</html>
