@@ -15,6 +15,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://www.gstatic.com/firebasejs/11.3.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore-compat.js"></script>
 
   <script>
     tailwind.config = {
@@ -698,92 +700,135 @@
 
           <!-- Registration Form -->
           <form id="register-form" class="space-y-4 mb-8 text-left reveal" novalidate aria-label="Form đăng ký khóa học">
+            <!-- Họ tên -->
             <div>
-              <label for="fullname" class="block text-sm font-medium text-text-muted mb-2">Họ và tên <span class="text-primary" aria-label="bắt buộc">*</span></label>
+              <label for="name" class="block text-sm font-medium text-text-muted mb-2">Họ và tên <span class="text-primary" aria-label="bắt buộc">*</span></label>
               <input
                 type="text"
-                id="fullname"
-                name="fullname"
+                id="name"
+                name="name"
                 required
                 placeholder="Nguyễn Văn A"
                 class="w-full px-4 py-3.5 rounded-xl text-white placeholder-text-muted/50 outline-none transition-all duration-200"
                 style="background: #13141F; border: 1px solid #1F2030;"
                 aria-required="true"
-                aria-describedby="fullname-error"
+                aria-describedby="name-error"
               >
-              <p id="fullname-error" class="text-red-400 text-sm mt-1 hidden" role="alert"></p>
+              <p id="name-error" class="text-red-400 text-sm mt-1 hidden" role="alert"></p>
             </div>
 
+            <!-- Giới tính -->
             <div>
-              <label for="email" class="block text-sm font-medium text-text-muted mb-2">Email <span class="text-primary" aria-label="bắt buộc">*</span></label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                required
-                placeholder="email@example.com"
-                class="w-full px-4 py-3.5 rounded-xl text-white placeholder-text-muted/50 outline-none transition-all duration-200"
-                style="background: #13141F; border: 1px solid #1F2030;"
-                aria-required="true"
-                aria-describedby="email-error"
-              >
-              <p id="email-error" class="text-red-400 text-sm mt-1 hidden" role="alert"></p>
+              <p class="block text-sm font-medium text-text-muted mb-3">Giới tính <span class="text-primary" aria-label="bắt buộc">*</span></p>
+              <div class="flex gap-6" role="radiogroup" aria-label="Giới tính">
+                <label class="flex items-center gap-2 cursor-pointer text-text-muted hover:text-white transition-colors">
+                  <input type="radio" name="gender" value="male" required class="accent-[#DF6B33] w-4 h-4">
+                  <span class="text-sm font-medium">Nam</span>
+                </label>
+                <label class="flex items-center gap-2 cursor-pointer text-text-muted hover:text-white transition-colors">
+                  <input type="radio" name="gender" value="female" class="accent-[#DF6B33] w-4 h-4">
+                  <span class="text-sm font-medium">Nữ</span>
+                </label>
+                <label class="flex items-center gap-2 cursor-pointer text-text-muted hover:text-white transition-colors">
+                  <input type="radio" name="gender" value="other" class="accent-[#DF6B33] w-4 h-4">
+                  <span class="text-sm font-medium">Khác</span>
+                </label>
+              </div>
+              <p id="gender-error" class="text-red-400 text-sm mt-1 hidden" role="alert"></p>
             </div>
 
-            <div>
-              <label for="phone" class="block text-sm font-medium text-text-muted mb-2">Số điện thoại <span class="text-text-muted/50">(tùy chọn)</span></label>
-              <input
-                type="tel"
-                id="phone"
-                name="phone"
-                placeholder="0912 345 678"
-                class="w-full px-4 py-3.5 rounded-xl text-white placeholder-text-muted/50 outline-none transition-all duration-200"
-                style="background: #13141F; border: 1px solid #1F2030;"
-              >
+            <!-- Email & SĐT -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="email" class="block text-sm font-medium text-text-muted mb-2">Email <span class="text-primary" aria-label="bắt buộc">*</span></label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  placeholder="email@example.com"
+                  class="w-full px-4 py-3.5 rounded-xl text-white placeholder-text-muted/50 outline-none transition-all duration-200"
+                  style="background: #13141F; border: 1px solid #1F2030;"
+                  aria-required="true"
+                  aria-describedby="email-error"
+                >
+                <p id="email-error" class="text-red-400 text-sm mt-1 hidden" role="alert"></p>
+              </div>
+              <div>
+                <label for="phone" class="block text-sm font-medium text-text-muted mb-2">Số điện thoại <span class="text-text-muted/50">(tùy chọn)</span></label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  placeholder="0912 345 678"
+                  class="w-full px-4 py-3.5 rounded-xl text-white placeholder-text-muted/50 outline-none transition-all duration-200"
+                  style="background: #13141F; border: 1px solid #1F2030;"
+                >
+              </div>
             </div>
 
+            <!-- Lĩnh vực -->
             <div>
-              <label for="topic" class="block text-sm font-medium text-text-muted mb-2">Nội dung cần tư vấn <span class="text-primary" aria-label="bắt buộc">*</span></label>
+              <label for="category" class="block text-sm font-medium text-text-muted mb-2">Lĩnh vực <span class="text-primary" aria-label="bắt buộc">*</span></label>
               <select
-                id="topic"
-                name="topic"
+                id="category"
+                name="category"
                 required
                 class="w-full px-4 py-3.5 rounded-xl text-white outline-none transition-all duration-200 appearance-none cursor-pointer"
-                style="background: #13141F; border: 1px solid #1F2030;"
+                style="background: #13141F; border: 1px solid #1F2030; background-image: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23A0A0B0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E&quot;); background-repeat: no-repeat; background-position: right 16px center; padding-right: 48px;"
                 aria-required="true"
-                aria-describedby="topic-error"
+                aria-describedby="category-error"
               >
-                <option value="" disabled selected>-- Chọn nội dung bạn quan tâm --</option>
-                <option value="firebase-backend">Firebase Backend</option>
-                <option value="frontend">Frontend Development</option>
-                <option value="deploy-vercel">Deploy lên Vercel</option>
-                <option value="prompt-engineering">Prompt Engineering</option>
-                <option value="debug-refactor">Debug & Refactor</option>
-                <option value="fullstack">Toàn diện (Backend + Frontend + Deploy)</option>
+                <option value="" disabled selected>-- Chọn lĩnh vực --</option>
+                <option value="engineering">Engineering</option>
+                <option value="marketing">Marketing</option>
+                <option value="finance">Finance</option>
+                <option value="hr">Human Resources</option>
+                <option value="it">IT</option>
+                <option value="sales">Sales</option>
                 <option value="other">Khác</option>
               </select>
-              <p id="topic-error" class="text-red-400 text-sm mt-1 hidden" role="alert"></p>
+              <p id="category-error" class="text-red-400 text-sm mt-1 hidden" role="alert"></p>
             </div>
 
+            <!-- Địa chỉ -->
             <div>
-              <label for="industry" class="block text-sm font-medium text-text-muted mb-2">Tiêu chí ngành nghề <span class="text-text-muted/50">(tùy chọn)</span></label>
+              <label for="address" class="block text-sm font-medium text-text-muted mb-2">Địa chỉ <span class="text-text-muted/50">(tùy chọn)</span></label>
               <input
                 type="text"
-                id="industry"
-                name="industry"
-                placeholder="VD: Thương mại điện tử, Giáo dục, Y tế..."
+                id="address"
+                name="address"
+                placeholder="VD: 123 Nguyễn Trãi, Q.1, TP.HCM"
                 class="w-full px-4 py-3.5 rounded-xl text-white placeholder-text-muted/50 outline-none transition-all duration-200"
                 style="background: #13141F; border: 1px solid #1F2030;"
               >
+            </div>
+
+            <!-- Nội dung tư vấn -->
+            <div>
+              <label for="notes" class="block text-sm font-medium text-text-muted mb-2">Nội dung tư vấn <span class="text-primary" aria-label="bắt buộc">*</span></label>
+              <textarea
+                id="notes"
+                name="notes"
+                required
+                rows="4"
+                placeholder="Mô tả chi tiết nhu cầu tư vấn của bạn..."
+                class="w-full px-4 py-3.5 rounded-xl text-white placeholder-text-muted/50 outline-none transition-all duration-200 resize-none"
+                style="background: #13141F; border: 1px solid #1F2030;"
+                aria-required="true"
+                aria-describedby="notes-error"
+              ></textarea>
+              <p id="notes-error" class="text-red-400 text-sm mt-1 hidden" role="alert"></p>
             </div>
 
             <button
               type="submit"
+              id="submit-btn"
               class="w-full bg-primary hover:bg-primary-hover text-white font-bold text-lg py-4 rounded-xl btn-primary flex items-center justify-center gap-2 mt-2"
               aria-label="Đăng ký khóa học Claude Code ngay"
             >
-              Đăng Ký Ngay
-              <i data-lucide="arrow-right" class="w-5 h-5" aria-hidden="true"></i>
+              <span id="btn-text">Đăng Ký Tư Vấn</span>
+              <i data-lucide="arrow-right" class="w-5 h-5" aria-hidden="true" id="btn-icon"></i>
             </button>
           </form>
 
@@ -1072,9 +1117,25 @@
 
     counters.forEach(counter => counterObserver.observe(counter));
 
-    // 6. Registration form validation
+    // 6. Firebase Init
+    const firebaseConfig = {
+      apiKey: "AIzaSyCQrfYvtuu-u1Wqi-5vvGVwDZ0RCFNdJrk",
+      authDomain: "claude-code-my-dashboard-a5d34.firebaseapp.com",
+      projectId: "claude-code-my-dashboard-a5d34",
+      storageBucket: "claude-code-my-dashboard-a5d34.firebasestorage.app",
+      messagingSenderId: "624193068963",
+      appId: "1:624193068963:web:a6ceb9d98d7b353bdec416"
+    };
+
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore(app);
+
+    // 7. Registration form → Firebase Firestore
     const registerForm = document.getElementById('register-form');
     const successMessage = document.getElementById('success-message');
+    const submitBtn = document.getElementById('submit-btn');
+    const btnText = document.getElementById('btn-text');
+    const btnIcon = document.getElementById('btn-icon');
 
     function showError(fieldId, message) {
       const field = document.getElementById(fieldId);
@@ -1093,24 +1154,58 @@
       if (errorEl) errorEl.classList.add('hidden');
     }
 
+    function clearGenderError() {
+      const errorEl = document.getElementById('gender-error');
+      if (errorEl) errorEl.classList.add('hidden');
+    }
+
     function validateEmail(email) {
       return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     }
 
-    registerForm.addEventListener('submit', (e) => {
+    function setButtonLoading(loading) {
+      if (!submitBtn || !btnText) return;
+      submitBtn.disabled = loading;
+      if (loading) {
+        btnText.textContent = 'Đang gửi...';
+        if (btnIcon) btnIcon.style.display = 'none';
+      } else {
+        btnText.textContent = 'Đăng Ký Tư Vấn';
+        if (btnIcon) btnIcon.style.display = '';
+        lucide.createIcons();
+      }
+    }
+
+    registerForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       let isValid = true;
 
-      clearError('fullname');
+      clearError('name');
       clearError('email');
-      clearError('topic');
+      clearError('category');
+      clearError('notes');
+      clearGenderError();
 
-      const fullname = document.getElementById('fullname').value.trim();
+      const name = document.getElementById('name').value.trim();
       const email = document.getElementById('email').value.trim();
-      const topic = document.getElementById('topic').value;
+      const phone = document.getElementById('phone').value.trim();
+      const category = document.getElementById('category').value;
+      const address = document.getElementById('address').value.trim();
+      const notes = document.getElementById('notes').value.trim();
+      const genderEl = document.querySelector('input[name="gender"]:checked');
+      const gender = genderEl ? genderEl.value : '';
 
-      if (!fullname) {
-        showError('fullname', 'Vui lòng nhập họ và tên');
+      if (!name) {
+        showError('name', 'Vui lòng nhập họ và tên');
+        isValid = false;
+      }
+
+      if (!gender) {
+        const errEl = document.getElementById('gender-error');
+        if (errEl) {
+          errEl.textContent = 'Vui lòng chọn giới tính';
+          errEl.classList.remove('hidden');
+        }
         isValid = false;
       }
 
@@ -1122,26 +1217,61 @@
         isValid = false;
       }
 
-      if (!topic) {
-        showError('topic', 'Vui lòng chọn nội dung cần tư vấn');
+      if (!category) {
+        showError('category', 'Vui lòng chọn lĩnh vực');
+        isValid = false;
+      }
+
+      if (!notes) {
+        showError('notes', 'Vui lòng nhập nội dung tư vấn');
+        isValid = false;
+      } else if (notes.length < 5) {
+        showError('notes', 'Nội dung tư vấn phải có ít nhất 5 ký tự');
         isValid = false;
       }
 
       if (isValid) {
-        registerForm.classList.add('hidden');
-        successMessage.classList.remove('hidden');
-        lucide.createIcons();
+        setButtonLoading(true);
+
+        try {
+          const customerData = {
+            id: `CUST-${Date.now()}`,
+            name: name,
+            gender: gender,
+            email: email,
+            phone: phone || '',
+            category: category,
+            address: address || '',
+            notes: notes,
+            createdAt: new Date().toISOString()
+          };
+
+          await db.collection('customers').doc(customerData.id).set(customerData);
+
+          registerForm.classList.add('hidden');
+          successMessage.classList.remove('hidden');
+          lucide.createIcons();
+        } catch (error) {
+          console.error('Firebase error:', error);
+          alert('Đã xảy ra lỗi khi gửi biểu mẫu. Vui lòng thử lại!');
+          setButtonLoading(false);
+        }
       }
     });
 
-    ['fullname', 'email', 'topic'].forEach(id => {
+    // Clear errors on input
+    ['name', 'email', 'category', 'notes', 'address'].forEach(id => {
       const field = document.getElementById(id);
       if (field) {
-        field.addEventListener(id === 'topic' ? 'change' : 'input', () => clearError(id));
+        field.addEventListener(id === 'category' ? 'change' : 'input', () => clearError(id));
       }
     });
 
-    // 7. Newsletter form
+    document.querySelectorAll('input[name="gender"]').forEach(el => {
+      el.addEventListener('change', clearGenderError);
+    });
+
+    // 8. Newsletter form
     const newsletterForm = document.getElementById('newsletter-form');
     const newsletterSuccess = document.getElementById('newsletter-success');
 
@@ -1159,7 +1289,7 @@
       }
     });
 
-    // 8. FAQ - re-init icons after details toggle
+    // 9. FAQ - re-init icons after details toggle
     document.querySelectorAll('details').forEach(detail => {
       detail.addEventListener('toggle', () => {
         lucide.createIcons();
